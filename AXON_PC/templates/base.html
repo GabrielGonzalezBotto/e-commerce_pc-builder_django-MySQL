@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title%}Axon PC{% endblock %}</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!--Scripts-->
+    <script src="{% static 'js/scripts.js' %}"></script>
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/cd10d9582d.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap 5 -->
+</head>
+<body class="bd-dark text light">
+    
+    <header class="nav">
+        <div class="nav-inner">
+            <a href="{% url 'home' %}" class="logo-container">
+                <img src="#" class="logo" alt="logo axon pc">
+                <span>AXON PC</span>
+            </a>
+
+                <!-- HAMBURGUESA -->
+                <input type="checkbox" id="menu-toggle" class="menu-toggle">
+                <label for="menu-toggle" class="hamburguesa">
+                    <span></span>
+                </label>
+
+                <!------ MENU NAVEGACION ------>
+                <nav class="menu-container">
+                    <ul class="menu">
+                        <li><a href="">Home</a></li>
+                        <li><a href="#">Componentes</a></li>
+                        <li><a href="#">Armá tu PC</a></li>
+                        <li><a href="#">Sobre mi</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+
+                    <!------- BUSCADOR ------>
+                    <form action="#" class="search">
+                        <input type="search" placeholder="Buscar..." required>
+                        <button type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </form>
+
+                    <!-------- LOGIN ------>
+                    <button class="nav-btn-container">
+                        <a href="#" class="btn">Iniciar sesión</a>
+                    </button>
+                </nav>
+            </div>
+    </header>
+
+    <main>
+        {% block content%}
+        {% endblock %}
+    </main>
+    
+    <footer class="footer">
+        <p>&copy; 2026 Axon PC - Desarrollado por José Gabriel González</p>
+    </footer>
+    
+</body>
+</html>
