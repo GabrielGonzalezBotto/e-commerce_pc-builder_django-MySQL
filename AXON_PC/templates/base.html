@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- FAVICON -->
+    <link rel="icon" href="{% static 'img/favicon.jpg' %}" class="favicon" alt="favicon axon pc">
     <title>{% block title%}Axon PC{% endblock %}</title>
 
     <!-- CSS -->
@@ -22,8 +25,7 @@
     <header class="nav">
         <div class="nav-inner">
             <a href="{% url 'home' %}" class="logo-container">
-                <img src="#" class="logo" alt="logo axon pc">
-                <span>AXON PC</span>
+                <img src="{% static 'img/logo.png'%}" class="logo" alt="logo axon pc">
             </a>
 
                 <!-- HAMBURGUESA -->
@@ -51,9 +53,9 @@
                     </form>
 
                     <!-------- LOGIN ------>
-                    <button class="nav-btn-container">
+                    <div class="nav-btn-container">
                         <a href="#" class="btn">Iniciar sesión</a>
-                    </button>
+                    </div>
                 </nav>
             </div>
     </header>

@@ -1,7 +1,7 @@
 :root {
     --color-fondo: #F8F9FA;
     --color-fondo-sec: #F1F3F5;
-    --color-cards-conainer: #FFFFFF;
+    --color-cards-container: #FFFFFF;
     --color-text-1: #1A1A1A;
     --color-text-2: #6C757D;
     --color-acento: #E67E22;
@@ -27,6 +27,11 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+}
+
+.favicon {
+    width:52px;
+    height: 32px;
 }
 
 /*========= HEADER ==========*/
@@ -60,7 +65,7 @@ body {
 }
 
 .logo {
-    width: clamp(40px, 4vw, 48px);
+    width: clamp(140px, 4vw, 48px);
     height: clamp(40px, 4vw, 48px);
 }
 
@@ -110,6 +115,11 @@ body {
 
 .search input::placeholder {
     color: var(--color-text-2);
+}
+
+.search input:focus {
+    border-color: var(--color-acento);
+    width: 250px;
 }
 
 .search button {
@@ -243,6 +253,10 @@ body {
         width: 100%;
     }
 
+    .search input:focus {
+        width: 250px;
+    }
+
     .nav-btn-container .btn {
         display: block;
         text-align: center;
@@ -273,4 +287,9 @@ body {
         top: 0;
         transform: rotate(-45deg);
     }
+
+    .logo {
+    width: clamp(120px, 4vw, 48px);
+    height: clamp(40px, 4vw, 48px);
+}
 }
