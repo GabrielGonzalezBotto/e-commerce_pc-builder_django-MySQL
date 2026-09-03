@@ -202,10 +202,10 @@ body {
 /*====== SECCION HERO ======*/
 
 
-.h1 {
-    font-size: 90px;
+h1 {
+    font-size: 45px;
     line-height: 100%;
-    font-weight: 800;
+    font-weight: 700;
     letter-spacing: -1px;
     margin: 16px 0;
     background: linear-gradient(90deg, #E67E22 20%, #994700 60% );
@@ -213,8 +213,9 @@ body {
     color: transparent;
 }
 
-.p {
-    font-size: 16px;
+p {
+    font-size: 14px;
+    font-weight: 700;
     line-height: 160%;
 }
 
@@ -315,6 +316,20 @@ body {
     height: 200px;
     border: 1px solid var(--color-text-2);
     border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-cat h3 {
+    color: var(--color-acento);
+}
+
+.icon-cat {
+    height: 85px;
+    width: 85px;
+    display: inline-block;
 }
 
 .box h3 {
