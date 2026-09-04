@@ -9,7 +9,8 @@
     --color-bordes: #DEE2E6;
     --color-exito: #28A745;
     --color-error: #DC3545;
-
+    --columns: repeat(3, 1fr);
+    --rows: 1fr;
 }
 
 *{
@@ -335,6 +336,104 @@ p {
 .box h3 {
     font-size: 18px;
     line-height: 24px;
+}
+
+/*======= SECCION COMPONENTES MAS VENDIDOS =======*/
+
+.comp-ven {
+    /*max-width: 1000px;*/
+    /*margin: 0 auto;*/
+    padding: 50px 92px 50px 92px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-rows: 1fr;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 2.5rem;
+}
+
+
+.card-prod {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    min-width: 150px;
+    min-height: 100px;
+    background: var(--color-fondo);
+    width: min-content;
+    border-radius: 30px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+    transition: .4s ease;
+}
+
+.card-prod:hover {
+    transform: scale(1.05);
+}
+
+.card-prod .card-prod-img {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    padding: 15px 20px;
+    border-radius: 5px;
+    text-align: center;
+    border-radius: 12px;
+    object-fit: contain;
+}
+
+.card-prod .card-prod-img img {
+    width: 100%;
+    transition: .4s ease;
+}
+
+.card-prod:hover .card-prod-img img {
+    transform: scale(1.02)
+                rotate(-3deg)
+                translateX(-5px);
+}
+
+.card-icon {
+    cursor: pointer;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 10px;
+    font-size: 20px;
+    color: var(--color-acento);
+    background: var(--color-fondo);
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, .04);
+}
+
+.card-prod h3{
+    color: var(--color-acento);
+    font-size: 22px;
+    margin-top: 20px;
+}
+
+.card-prod .card-prod-content span {
+    color: var(--color-text-2);
+    font-size: 18px;
+    font-weight: 500;
+    margin: 8px 0 22px;
+    text-align: justify;
+}
+
+.card-prod .card-prod-content .buttons {
+    margin: 10px;
+}
+
+.card-prod-btn {
+    color: var(--color-fondo);
+    background: var(--color-acento);
+    width: 100%;
+    height: 35px;
+    font-size: 19px;
+    font-weight: 600;
+    border-radius: 7px;
+    cursor: pointer;
 }
 
 /*======= FOOTER ======*/

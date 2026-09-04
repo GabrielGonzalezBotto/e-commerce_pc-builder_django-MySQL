@@ -57,21 +57,21 @@
 
         <a href="">
             <div class="box-cat">
-                <img src="" alt="Memoria RAM">
+                <img class="icon-cat" src="{% static 'img/SSD.png'%}" alt="Memoria RAM">
                 <h3>memoria ram</h3>
             </div>
         </a>
         
         <a href="">
             <div class="box-cat">
-                <img src="" alt="Tarjeta Gráfica">
+                <img class="icon-cat" src="{% static 'img/GPU.png'%}" alt="Tarjeta Gráfica">
                 <h3>tarjeta grafica</h3>
             </div>
         </a>
         
         <a href="">
             <div class="box-cat">
-                <img src="" alt="Almecenamineto">
+                <img class="icon-cat" src="{% static 'img/HDD.png'%}" alt="Almecenamineto">
                 <h3>almacenamiento</h3>
             </div>
         </a>
@@ -108,4 +108,65 @@
     </div>
 
 </section>
+
+<!-- SECCION COMPONENTES MAS COMPRADOS -->
+
+    <div class="cat-title">
+        <h2>Componentes más vendidos</h2>
+        <div class="title-line"></div>
+    </div>
+
+    <seccion class="comp-ven">
+
+        <div class="card-prod">
+            <img class="card-prod-img" src="{% static 'img/placa-madre-prod.jpg'%}" alt="imagen producto">
+            <h3>Placa Madre</h3>
+            <div class="card-icon">
+                <i class="fa-regular fa-heart"></i>
+            </div>
+            <div class="card-prod-content">
+                <span>categoria: Placa Madre</span>
+                <br>
+                <span>precio: <b>500.000 ARS</b></span>
+                <div class="buttons">
+                    <a class="card-prod-btn" href="#">añadir</a>
+                    <a class="card-prod-btn" href="#">ver</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-prod">
+            <img class="card-prod-img" src="{% static 'img/placa-madre-prod.jpg'%}" alt="imagen producto">
+            <h3>Placa Madre</h3>
+            <div class="card-icon">
+                <i class="fa-regular fa-heart"></i>
+            </div>
+            <div class="card-prod-content">
+                <span>categoria: Placa Madre</span>
+                <br>
+                <span>precio: <b>500.000 ARS</b></span>
+                <div class="buttons">
+                    <a class="card-prod-btn" href="#">añadir</a>
+                    <a class="card-prod-btn" href="#">ver</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-prod">
+            <img class="card-prod-img" src="{% static 'img/placa-madre-prod.jpg'%}" alt="imagen producto">
+            <h3>Placa Madre</h3>
+            <div class="card-icon">
+                <i class="fa-regular fa-heart"></i>
+            </div>
+            <div class="card-prod-content">
+                <span>categoria: Placa Madre</span>
+                <br>
+                <span>precio: <b>500.000 ARS</b></span>
+                <div class="buttons">
+                    <a class="card-prod-btn" href="#">añadir</a>
+                    <a class="card-prod-btn" href="#">ver</a>
+                </div>
+            </div>
+        </div>
+    </seccion>
 {% endblock %}
