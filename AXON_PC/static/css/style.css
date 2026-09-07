@@ -244,7 +244,7 @@ p {
 
 .btn.outlined {
     color: var(--color-acento);
-    background-color: var(--color-fondo);
+    background-color: transparent;
     display: inline-block;
     padding: 8px 32px;
     font-weight: 500;
@@ -340,9 +340,7 @@ p {
 
 /*======= SECCION COMPONENTES MAS VENDIDOS =======*/
 
-.comp-ven {
-    /*max-width: 1000px;*/
-    /*margin: 0 auto;*/
+.grid-container-ven, .grid-container-ult {
     padding: 50px 92px 50px 92px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -352,6 +350,12 @@ p {
     align-items: center;
     text-align: center;
     gap: 2.5rem;
+}
+
+.comp-ven {
+    /*max-width: 1000px;*/
+    /*margin: 0 auto;*/
+    
 }
 
 
