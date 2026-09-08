@@ -440,6 +440,142 @@ p {
     cursor: pointer;
 }
 
+/*======= CONTACTO =======*/
+
+.contacto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.box-info {
+    /*display: grid;
+    grid-template-columns: repeat(2,50%);
+    padding: 20px;
+    gap: 10px;
+    width: 1000px;*/
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap: 20px;
+}
+
+.box-info h2 {
+    font-size: 56px;
+    font-weight: 700;
+    text-align: left;
+    letter-spacing: 5px;
+}
+
+.data {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.data p {
+    font-size: 1rem;
+}
+
+.data p i {
+    color: var(--color-acento);
+    margin-right: 10px;
+    font-size: 15px;
+}
+
+.links-info {
+    display: flex;
+    gap: 25px;
+}
+
+.links-info a {
+    width: 40px;
+    height: 40px;
+    background: var(--color-text-1);
+    text-align: center;
+    transition: .1s;
+}
+
+.links-info a i {
+    color: var(--color-text-2);
+    line-height: 40px;
+    font-size: 20px;
+}
+
+.links-info a i:hover {
+    color: var(--color-acento-hov);
+}
+
+.form-contacto {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+    width: 50%;
+}
+
+.input-box {
+    position: relative;
+}
+
+.input-box input {
+    width: 100%;
+    height: 40px;
+    padding: 0 10px;
+    outline: none;
+    background: transparent;
+    border: 1px solid var(--color-bordes);
+    border-radius: 12px;
+    letter-spacing: 1px;
+    transition: .3s;
+    color: var(--color-acento-hov);
+}
+
+.input-box textarea {
+    width: 100%;
+    height: 130px;
+    outline: none;
+    background: transparent;
+    border: 3px solid var(--color-bordes);
+    border-radius: 12px;
+    letter-spacing: 1px;
+    transition: .3s;
+    color: var(--color-acento-hov);
+    padding: 10px;
+    outline: none;
+}
+
+.input-box input:focus,
+.input-box textarea:focus {
+    border: 3px solid var(--color-acento);
+}
+
+.input-box i {
+    color: var(--color-acento);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 15px;
+}
+
+form button {
+    background: var(--color-acento);
+    color: var(--color-fondo);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 12px;
+    transition: transform 0.15s
+}
+
+form button:hover {
+    background: var(--color-acento-hov);
+    transform: translateY(-2px);
+}
+
 /*======= FOOTER ======*/
 
 .footer {
@@ -619,6 +755,27 @@ p {
 .categoria {
     justify-content: center;
     align-items: center;
+}
+
+/*======= CONTACTO =======*/
+
+.contacto {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.box-info {
+    gap: 15px;
+}
+
+.box-info h2 {
+    font-size: 1.5rem;
+}
+
+.form-contacto {
+    width: 90%;
 }
 
 /*====== FOOTER RESPONSIVE ======*/

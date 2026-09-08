@@ -1,62 +1,44 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Axon PC{% endblock %}</title>
-    <!-- Bootstrap 5 CSS para el diseño Responsive -->
-    <link href="https://jsdelivr.net" rel="stylesheet">
-    <!-- Tus estilos personalizados (opcional) -->
-    {% block extra_css %}{% endblock %}
-</head>
-<body class="d-flex flex-column min-vh-100 bg-light">
+{% extends 'base.html' %}
+{% load static %}
 
-    <!-- NAVBAR RESPONSIVE -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
-        <div class="container">
-            <a class="navbar-brand fw-bold text-info" href="{% url 'home' %}">AXON PC</a>
-            <!-- Botón para celulares (Menú Hamburguesa) -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <!-- Enlaces de la Navbar -->
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'home' %}">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Armar PC</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Componentes</a>
-                    </li>
-                    <!-- Botón destacado para el Panel Interno/CRM -->
-                    <li class="nav-item ms-lg-2">
-                        <a class="btn btn-outline-info btn-sm w-100 mt-2 mt-lg-0" href="#">Panel Gestión</a>
-                    </li>
-                </ul>
+{% block title %}Axon PC - Contatco{% endblock %}
+
+{% block content %}
+    <div class="contacto">
+
+        <div class="box-info">
+            <h2 class="text-dark">CONTACTATE CON NOSOTROS</h2>
+            <div class="data">
+                <p><i class="fa-solid fa-phone"></i>+54 9 362 4595558</p>
+                <p><i class="fa-solid fa-envelope"></i>gabrielgonzalezbotto@gmail.com</p>
+                <p><i class="fa-solid fa-location-dot"></i>AV.Simepre viva 989, Resistencia, Chaco</p>
+            </div>
+
+            <div class="links-info">
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#"><i class="fa-brands fa-discord"></i></a>
             </div>
         </div>
-    </nav>
 
-    <!-- CONTENIDO DINÁMICO (Cambia en cada página) -->
-    <main class="flex-grow-1 container my-4">
-        {% block content %}
-        {% endblock %}
-    </main>
-
-    <!-- FOOTER RESPONSIVE -->
-    <footer class="bg-dark text-light py-3 mt-auto border-top border-secondary">
-        <div class="container text-center">
-            <p class="mb-1">&copy; 2026 Axon PC - Todos los derechos reservados.</p>
-            <small class="text-muted">Desarrollado por Gabriel Gonzalez Botto</small>
-        </div>
-    </footer>
-
-    <!-- Bootstrap 5 JavaScript (Necesario para que funcione el menú en celulares) -->
-    <script src="https://jsdelivr.net"></script>
-    <!-- Tus scripts personalizados (opcional) -->
-    {% block extra_js %}{% endblock %}
-</body>
-</html>
+        <form class="form-contacto" action="#">
+            <div class="input-box">
+                <input type="text" required placeholder="Nombre y Apellido...">
+                <i class="fa-solid fa-user"></i>
+            </div>
+            <div class="input-box">
+                <input type="email" required placeholder="Correo electrónico">
+                <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div class="input-box">
+                <input type="text" required placeholder="Asunto">
+                <i class="fa-solid fa-pencil"></i>
+            </div>
+            <div class="input-box">
+                <textarea cols="30" rows="10" placeholder="Ecribí tu mensaje, queremos ayuderte..."></textarea>
+            </div>
+            <button type="submit">Enviar mensaje</button>
+        </form>
+    </div>
+{% endblock %}
