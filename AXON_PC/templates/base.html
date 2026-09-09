@@ -22,7 +22,7 @@
 </head>
 <body class="bd-light text-dark">
     
-    <header class="nav">
+    <header class="nav bg-dark">
         <div class="nav-inner">
             <a href="{% url 'home' %}" class="logo-container">
                 <img src="{% static 'img/logo.png'%}" class="logo" alt="logo axon pc">
@@ -37,11 +37,11 @@
                 <!------ MENU NAVEGACION ------>
                 <nav class="menu-container">
                     <ul class="menu">
-                        <li><a href="">Home</a></li>
+                        <li><a href="{% url 'home' %}">Home</a></li>
                         <li><a href="#">Tienda</a></li>
-                        <li><a href="#">Armá tu PC</a></li>
-                        <li><a href="#">Sobre mi</a></li>
-                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#"><span style="color: var(--color-acento);">PC</span></a></li>
+                        <li><a href="{% url 'nosotros' %}">Nosotros</a></li>
+                        <li><a href="{% url 'contacto' %}">Contacto</a></li>
                     </ul>
 
                     <!------- BUSCADOR ------>

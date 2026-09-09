@@ -91,7 +91,7 @@ body {
 }
 
 .menu a:hover {
-    color: var(--color-acento);
+    color: var(--color-acento-hov);
     /*text-shadow: 0 0 10px var(--color-acento-hov);*/
 }
 
@@ -296,7 +296,7 @@ p {
 }
 
 .categoria {
-    background-color: var(--color-fondo);
+    background-color: transparent;
     padding: 50px;
 }
 
@@ -312,7 +312,7 @@ p {
 
 
 .box-cat {
-    background-color: var(--color-fondo);
+    background-color: transparent;
     width: 200px;
     height: 200px;
     border: 1px solid var(--color-text-2);
@@ -365,7 +365,7 @@ p {
     text-align: center;
     min-width: 150px;
     min-height: 100px;
-    background: var(--color-fondo);
+    background: transparent;
     width: min-content;
     border-radius: 30px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
@@ -417,6 +417,25 @@ p {
     margin-top: 20px;
 }
 
+.rating {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.list-star i {
+    color: var(--color-acento);
+    transition: .3s;
+}
+
+.list-star i:hover {
+    color: var(--color-acento-hov);
+    transform: translateY(-2px);
+}
+
+
+
 .card-prod .card-prod-content span {
     color: var(--color-text-2);
     font-size: 18px;
@@ -438,8 +457,13 @@ p {
     font-weight: 600;
     border-radius: 7px;
     cursor: pointer;
+    transition: .3s;
 }
 
+.card-prod-btn:hover {
+    background: var(--color-acento-hov);
+    transform: translateY(-2px);
+}
 /*======= CONTACTO =======*/
 
 .contacto {
@@ -450,22 +474,25 @@ p {
 }
 
 .box-info {
-    /*display: grid;
-    grid-template-columns: repeat(2,50%);
+    display: grid;
+    grid-template-columns: repeat(200px, 2fr);
+    justify-content: center;
+    align-items: center;
     padding: 20px;
     gap: 10px;
-    width: 1000px;*/
-    display: flex;
+    width: 100%;
+    /*display: flex;
     flex-direction: column;
     width: 50%;
-    gap: 20px;
+    gap: 20px;*/
 }
 
 .box-info h2 {
+    color: var(--color-acento);
     font-size: 56px;
     font-weight: 700;
     text-align: left;
-    letter-spacing: 5px;
+    letter-spacing: 2px;
 }
 
 .data {
@@ -548,7 +575,7 @@ p {
 
 .input-box input:focus,
 .input-box textarea:focus {
-    border: 3px solid var(--color-acento);
+    border: 1px solid var(--color-acento);
 }
 
 .input-box i {
@@ -576,11 +603,40 @@ form button:hover {
     transform: translateY(-2px);
 }
 
+/*======= NOSOTROS =======*/
+
+.nosotros {
+    display: flex;
+    width: 90%;
+    padding: 50px 30px;
+}
+
+.nos-img img{
+    height: 15rem;
+    width: 15rem;
+    border: 5px solid var(--color-acento);
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.nos-txt {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 30px;
+    border-bottom: 5px solid var(--color-acento);
+}
+
+.nos-txt h2 {
+    color: var(--color-acento);
+    font-size: 58px;
+}
+
 /*======= FOOTER ======*/
 
 .footer {
     width: 100%;
-    background: var(--color-fondo);
+    background: transparent;
 }
 
 .footer .grupo-1 {
@@ -643,6 +699,28 @@ form button:hover {
 }
 
 /*======= RESPONSIVE ======*/
+
+@media (max-width: 1024px) {
+    .contacto {
+        display: flex;
+        flex-direction: column;
+        gap: 165px;
+    }
+
+    .box-info {
+        text-align: center;
+    }
+
+    .box-info h2 {
+        font-size: 75px;
+        letter-spacing: 5px;
+        text-align: center;
+    }
+
+    .links-info {
+        justify-content: center;
+    }
+}
 
 @media(max-width: 900px) {
 
@@ -790,4 +868,11 @@ form button:hover {
 .footer .grupo-1 .box figure {
     justify-content: center;
 }
+}
+
+@media(max-width: 768px) {
+    .nosotros {
+        display: flex;
+        flex-direction: column;
+    }
 }

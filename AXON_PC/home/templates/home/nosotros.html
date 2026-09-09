@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Axon PC{% endblock %}
+
+{% block content %}
+    
+    <div class="nosotros">
+        <div class="nos-img">
+            <img src="{% static 'img/development_icon.png'%}" alt="">
+        </div>
+        
+        <div class="nos-txt">
+            <h2>SOBRE MI</h2>
+            <p>
+                Soy <b>José Gbariel González</b>, estudiante autodidacta de desarrollo web, buscando oportunidades laborales. En este proyecto, a diferencia del anterior (<a href="https://theglitchzone.pythonanywhere.com/">The Glitch Zone</a>),
+                quise implementar nuevas tecnologías para mi, reemplazando el SQLite3 por MySQL, por ejemplo, y seguir practicando lo básico de Javascript, mejorar mi diseño responsivo desde un principio,
+                usando mayormente <b>Flexbox</b> y <b>Grid</b>, tratando de reducir el uso de Mediaqueries.
+            </p>
+        </div>
+    </div>
+
+    </div>
+
+    <div class="cat-title">
+        <h2 class="text-dark">TECNOLOGÍAS USADAS</h2>
+        <div class="title-line"></div>
+    
+
+    <div class="categoria">
+        
+            <div class="tec-container">
+                <div class="grid-container-cat">
+
+                    <a href="#">
+                        <div class="box-cat">
+                            <i class="fa-brands fa-python" style="font-size: 5rem; color: var(--color-acento); margin-bottom: 12px;"></i>
+                            <h3>Python Django</h3>
+                        </div>
+                    </a>
+
+                    <a href="">
+                        <div class="box-cat">
+                            <i class="fa-brands fa-html5" style="font-size: 5rem; color: var(--color-acento); margin-bottom: 12px;"></i>
+                            <h3>HTML5</h3>
+                        </div>
+                    </a>
+        
+                    <a href="">
+                        <div class="box-cat">
+                            <i class="fa-brands fa-css3-alt" style="font-size: 5rem; color: var(--color-acento); margin-bottom: 12px;"></i>
+                            <h3>CSS</h3>
+                        </div>
+                    </a>
+
+                    <a href="">
+                        <div class="box-cat">
+                            <i class="fa-brands fa-js" style="font-size: 5rem; color: var(--color-acento); margin-bottom: 12px;"></i>
+                            <h3>Javascript</h3>
+                        </div>
+                    </a>
+
+                    <a href="">
+                        <div class="box-cat">
+                            <i class="fa-solid fa-database" style="font-size: 5rem; color: var(--color-acento); margin-bottom: 12px;"></i>
+                            <h3>MySQL</h3>
+                        </div>
+                    </a>
+        
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div class="cat-title">
+            <h2 class="text-dark">PROYECTO</h2>
+            <div class="title-line"></div>
+        </div>
+
+        <div class="proyecto">
+
+            <div class="nos-txt">
+                <p>
+                    En este proyecto busqué desarrollar un e-commerce de hardware para PC, aplicando las tecnologias ya mencionadas y practicar la lógica backend detrás de un e-commerce, 
+                    aplicando un front end mas sencillo que el proyecto anterior, también mejorando el diseño mobile.
+                    Esta página cuenta con un Index compuesto por un Hero dónde se le dá énfasis a la sección principal, el <b>"PC Builder"</b>.
+                    Una seccion de categorías, para buscar directamente un componente en especifico o el buscador del navbar, luego dos secciones autogestinadas "Componentes más vendidos"  y "Últimos componentes".
+                    También cuenta con la página de "Tienda", que consta de la sección de categorías para filtarara los productos y la seccion de la tienda en sí que cuenta con los componantes subidos por el administrador de e-commerce,
+                    con los productos mezclados segun su publibcación(más recientes a más antiguos), aplicando Grid y paginación para no sobrecargar la pantalla de productos.
+                    Luego pasamos a la seccion principal de la página el "PC Builder" o PC, don el usuario al estar regsitrado, podrá acceder a un aguía inteligente que lo ayudará, según, el presupuesto que el mismo esté dispuesto a gastar,
+                    armar su PC ideal, mediante una lócgica de compatibilidad de Socket, filtarndo componentes para que el usuario pueda decidir entre varias opciones y armar su PC ideal segun su necesidad.
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -9,3 +9,6 @@ def index(request):
 
 def contacto(request):
     return render(request, 'home/contacto.html')
+
+def nosotros(request):
+    return render(request, 'home/nosotros.html')
