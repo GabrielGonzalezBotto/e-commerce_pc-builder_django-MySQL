@@ -86,8 +86,9 @@ body {
     padding: 0.5rem 0.75rem;
     font-size: clamp(0.9rem, 0.9vw, 1.05rem);
     font-weight: 500;
-    color: var(--color-text-1);
+    color: var(--color-text-2);
     transition: 0.2s;
+    text-decoration: none;
 }
 
 .menu a:hover {
@@ -126,8 +127,8 @@ body {
 .search button {
     position: absolute;
     right: 0.6rem;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 10%;
+    transform: translateY(-2%);
     background: none;
     border: none;
     cursor: pointer;
@@ -161,6 +162,7 @@ body {
 
 .nav-btn-container .btn:hover {
     transform: translateY(-2px);
+    color: var(--color-fondo);
     background-color: var(--color-acento-hov);
     box-shadow: 0 4px 12px rgba(230, 126, 34, 0.3);
 }
@@ -203,7 +205,7 @@ body {
 /*====== SECCION HERO ======*/
 
 
-h1 {
+.main-title, .con-title {
     font-size: 45px;
     line-height: 100%;
     font-weight: 700;
@@ -234,6 +236,7 @@ p {
     font-weight: 500;
     border-radius: 12px;
     transition: transform 0.15s, box-shadow 0.2s;
+    text-decoration: none;
 }
 
 .btn-hero:hover {
@@ -300,6 +303,10 @@ p {
     padding: 50px;
 }
 
+.categoria a {
+    text-decoration: none;
+}
+
 .grid-container-cat {
     justify-content: center;
     align-items: center;
@@ -325,6 +332,7 @@ p {
 
 .box-cat h3 {
     color: var(--color-acento);
+    font-size: 26px;
 }
 
 .icon-cat {
@@ -458,6 +466,7 @@ p {
     border-radius: 7px;
     cursor: pointer;
     transition: .3s;
+    text-decoration: none;
 }
 
 .card-prod-btn:hover {
@@ -681,6 +690,7 @@ form button:hover {
     margin-right: 10px;
     background-color: var(--color-text-1);
     transition: all 300ms ease;
+    text-decoration: none;
 }
 
 .footer .grupo-1 .red-social a:hover {
