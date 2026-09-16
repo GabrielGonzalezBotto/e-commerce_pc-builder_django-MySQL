@@ -15,14 +15,14 @@
         </div>
 
         <!--Derecha: datos de compra-->
-        <div class="preducto-action-container">
+        <div class="producto-action-container">
 
             <h2 class="producto-title">Placa Madre</h2>
-            <p class="preducto-categoria">Categoría: Placa Madre</p>
+            <p class="producto-categoria">Categoría: Placa Madre</p>
 
             <!--Sistema de rating-->
             <div class="producto-rating">
-                Rating:
+                <span class="rating-label">Rating:</span>
                 <ul class="list-star">
                     <a href="#"><i class="fa-solid fa-star"></i></a>
                     <a href="#"><i class="fa-solid fa-star"></i></a>
@@ -30,39 +30,43 @@
                     <a href="#"><i class="fa-solid fa-star"></i></a>
                     <a href="#"><i class="fa-regular fa-star"></i></a>
                 </ul>
-                <span>4/5</span>
+                <span class="rating-score">4/5</span>
                 <small class="text-muted">(12 reseñas)</small>
             </div>
 
-            <div class="preducto-precio">Precio: $500.000 ARS</div>
+            <div class="producto-precio">Precio: <span>$500.000 ARS</span></div>
 
             <!--Opcoiones de compra y carrito-->
-            <div class="preducto-compra">
-                <label for="cantidad">Cantidad</label>
-                <input type="number" id="cantidad" name="cantidad" value="1" min="1" max="10">
+            <div class="producto-compra">
+                <div class="cantidad-container">
+                    <label for="cantidad">Cantidad</label>
+                    <input type="number" id="cantidad" name="cantidad" value="1" min="1" max="10">
+                </div>
 
-                <div class="preducto-buttons">
-                    <button class="card-prod-btn">Añadir al carrito <i class="fa-solid fa-cart-plus"></i></button>
-                    <button class="card-prod-btn">Comprar ahora</button>
+                <div class="producto-buttons">
+                    <button class="btn-add-cart">Añadir al carrito <i class="fa-solid fa-cart-plus"></i></button>
+                    <button class="btn-buy-now">Comprar ahora</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!--Descripicion del producto-->
-    <div class="preducto-descripcion">
-        <h3>Descripción del preducto:</h3>
+    <div class="producto-descripcion">
+        <h2 class="bg-body bg-text">Descripción del producto</h2>
+        <div class="title-line"></div>
         <p>Aquí va el texto descriptivo del componente. Más adelante, cuando usemos MySQL, este texto se cargará dinámicamente desde el campo "descripcion" de tu modelo de Django.</p>
     </div>
 
     <!--Bloque reseñas y comentarios-->
-    <div class="peducto-reviews">
-        <h3>Opiñones de usuarios</h3>
+    <div class="producto-reviews">
+        <h2 class="bg-body bg-text">Opiñones de ususarios</h2>
+        <div class="title-line"></div>
 
         <!--Formulario para dejar reseña-->
         <form action="#" class="review-form">
             <h4>Dejanos tu opiñon:</h4>
-            <textarea name="#" id="#" placeholder="Qué te pareció este producto?..." rows="3" required></textarea>
+            <textarea name="comentario" id="comentario" placeholder="Qué te pareció este producto?..." rows="3" required></textarea>
             <button type="submit" class="btn-submit-review">Enviar Reseña</button>
         </form>
 
