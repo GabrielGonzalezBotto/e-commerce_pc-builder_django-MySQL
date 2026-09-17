@@ -7,10 +7,10 @@
 
 <div class="producto">
 
-    <div class="producto-detalles">
+    <div class="producto-detalles bg-body bg-text">
 
         <!--Izqueirda: imagen del preducto-->
-        <div class="producto-img-container">
+        <div class="producto-img-container bg-body bg-text">
             <img src="{% static 'img/placa-madre-prod.jpg'%}" alt="Producto" class="producto-img">
         </div>
 
@@ -23,14 +23,14 @@
             <!--Sistema de rating-->
             <div class="producto-rating">
                 <span class="rating-label">Rating:</span>
-                <ul class="list-star">
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-regular fa-star"></i></a>
-                </ul>
-                <span class="rating-score">4/5</span>
+                <span class="review-stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <small>5/5</small>
+                    </span>
                 <small class="text-muted">(12 reseñas)</small>
             </div>
 
@@ -52,19 +52,19 @@
     </div>
 
     <!--Descripicion del producto-->
-    <div class="producto-descripcion">
+    <div class="producto-descripcion bg-body bg-text">
         <h2 class="bg-body bg-text">Descripción del producto</h2>
         <div class="title-line"></div>
         <p>Aquí va el texto descriptivo del componente. Más adelante, cuando usemos MySQL, este texto se cargará dinámicamente desde el campo "descripcion" de tu modelo de Django.</p>
     </div>
 
     <!--Bloque reseñas y comentarios-->
-    <div class="producto-reviews">
+    <div class="producto-reviews bg-body bg-text">
         <h2 class="bg-body bg-text">Opiñones de ususarios</h2>
         <div class="title-line"></div>
 
         <!--Formulario para dejar reseña-->
-        <form action="#" class="review-form">
+        <form action="#" class="review-form bg-body bg-text">
             <h4>Dejanos tu opiñon:</h4>
             <textarea name="comentario" id="comentario" placeholder="Qué te pareció este producto?..." rows="3" required></textarea>
             <button type="submit" class="btn-submit-review">Enviar Reseña</button>
@@ -72,9 +72,9 @@
 
         <!--Liasta de comentarios-->
         <div class="review-list">
-            <div class="review-card">
+            <div class="review-card bg-body bg-text">
                 <div class="review-header">
-                    <strong>Gabriel Gonzalez</strong>
+                    <strong style="color: var(--color-acento);">Gabriel Gonzalez</strong>
                     <span class="review-stars">
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
@@ -83,6 +83,23 @@
                         <i class="fa-solid fa-star"></i>
                         <small>5/5</small>
                     </span>
+                    <!-- Acciones del comentario (Editar/Eliminar) -->
+                    <div class="review-actions"> 
+                        <input type="checkbox" class="menu-checkbox" id="menu-{{ com.id }}">
+                        <label class="menu-label" for="menu-{{ com.id }}"><i class="fa-solid fa-gear"></i></label>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-item">
+                                <form action="#" method="get">
+                                    {% csrf_token %}
+                                    <button type="submit" class="edit-btn" aria-label="Editar comentario"><i class="fas fa-edit"></i> Editar</button>
+                                </form>
+                                <form action="#" method="get">
+                                    {% csrf_token %} 
+                                    <button type="submit" class="delete-btn" aria-label="Eliminar comentario"><i class="fas fa-trash"></i> Eliminar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <p class="review-txt">Excelente procesador, levantó vuelo la PC y las temperaturas son bajísimas con un buen cooler.</p>
             </div>
