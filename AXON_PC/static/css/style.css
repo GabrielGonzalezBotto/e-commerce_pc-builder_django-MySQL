@@ -677,7 +677,7 @@ form button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: var(--color-fondo);
+    background: var(--color-text-2);
     border: 2px solid var(--color-acento);
     border-radius: 12px;
     padding: 1.5rem;
@@ -739,7 +739,7 @@ form button:hover {
 
 .producto-precio span {
     font-size: 1.8rem;
-    color: var(--color-text-1);
+    color: var(--color-acento-hov);
     font-weight: 700;
 }
 
@@ -942,9 +942,8 @@ form button:hover {
 .review-header {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1.5rem;
 }
 
 .review-stars i {
@@ -970,13 +969,76 @@ form button:hover {
 }
 
 .review-actions i {
-    position: absolute;
-    left: 14%;
+    position: relative;
+    align-items: end;
     cursor: pointer;
 }
 
 .menu-checkbox {
-    
+    display: none;
+}
+
+.menu-checkbox:checked ~ .menu-label i {
+    color: var(--color-acento-hov);
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    /*right: 50%;*/
+    background-color: rgba(20, 20, 30, 0.962);
+    border: 2px solid var(--color-acento);
+    border-radius: 8px;
+    z-index: 1000;
+    min-width: 120px;
+    overflow: hidden;
+}
+
+/* Para el último comentario, abrir el menú hacia arriba */
+.comentarios:last-child .dropdown-menu {
+    top: auto;
+    top: 100%;
+}
+
+.menu-checkbox:checked + .menu-label + .dropdown-menu {
+    display: block;
+}
+
+.edit-btn {
+    color: var(--color-text-2);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 8px 12px;
+    display: block;
+    width: 100%;
+    /*text-align: left;*/
+}
+
+.edit-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-acento);
+}
+
+.delete-btn{
+    color: var(--color-text-2);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 8px 12px;
+    display: block;
+    width: 100%;
+    /*text-align: left;*/
+}
+
+.delete-btn:hover{
+    background: rgba(255, 255, 255, 0.1);
+    color: #ff0055;
 }
 
 

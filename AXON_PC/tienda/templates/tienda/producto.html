@@ -60,12 +60,12 @@
 
     <!--Bloque reseñas y comentarios-->
     <div class="producto-reviews bg-body bg-text">
-        <h2 class="bg-body bg-text">Opiñones de ususarios</h2>
+        <h2 class="bg-body bg-text">Opiniones de usuarios</h2>
         <div class="title-line"></div>
 
         <!--Formulario para dejar reseña-->
         <form action="#" class="review-form bg-body bg-text">
-            <h4>Dejanos tu opiñon:</h4>
+            <h4>Dejanos tu opinión:</h4>
             <textarea name="comentario" id="comentario" placeholder="Qué te pareció este producto?..." rows="3" required></textarea>
             <button type="submit" class="btn-submit-review">Enviar Reseña</button>
         </form>
@@ -85,8 +85,40 @@
                     </span>
                     <!-- Acciones del comentario (Editar/Eliminar) -->
                     <div class="review-actions"> 
-                        <input type="checkbox" class="menu-checkbox" id="menu-{{ com.id }}">
-                        <label class="menu-label" for="menu-{{ com.id }}"><i class="fa-solid fa-gear"></i></label>
+                        <input type="checkbox" class="menu-checkbox" id="menu-prueba">
+                        <label class="menu-label" for="menu-prueba"><i class="fa-solid fa-gear"></i></label>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-item">
+                                <form action="#" method="get">
+                                    {% csrf_token %}
+                                    <button type="submit" class="edit-btn" aria-label="Editar comentario"><i class="fas fa-edit"></i> Editar</button>
+                                </form>
+                                <form action="#" method="get">
+                                    {% csrf_token %} 
+                                    <button type="submit" class="delete-btn" aria-label="Eliminar comentario"><i class="fas fa-trash"></i> Eliminar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="review-txt">Excelente procesador, levantó vuelo la PC y las temperaturas son bajísimas con un buen cooler.</p>
+            </div>
+
+            <div class="review-card bg-body bg-text">
+                <div class="review-header">
+                    <strong style="color: var(--color-acento);">Gabriel Gonzalez</strong>
+                    <span class="review-stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <small>5/5</small>
+                    </span>
+                    <!-- Acciones del comentario (Editar/Eliminar) -->
+                    <div class="review-actions"> 
+                        <input type="checkbox" class="menu-checkbox" id="menu-prueba">
+                        <label class="menu-label" for="menu-prueba"><i class="fa-solid fa-gear"></i></label>
                         <div class="dropdown-menu">
                             <div class="dropdown-item">
                                 <form action="#" method="get">
