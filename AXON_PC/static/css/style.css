@@ -688,7 +688,7 @@ form button:hover {
     transform: scale(1.03);
 }
 
-.preducto-action-container{
+.producto-action-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -763,13 +763,13 @@ form button:hover {
     color: var(--color-text-2);
 }
 
-.preducto-compra label {
+.producto-compra label {
     font-weight: 700;
 }
 
-.preducto-compra input[type="number"] {
-    background: var(--color-fondo);
-    border: 2px solid var(--color-acento);
+.producto-compra input[type="number"] {
+    background: transparent;
+    border: 2px solid var(--color-text-2);
     border-radius: 8px;
     font-weight: 600;
     text-align: center;
@@ -847,6 +847,71 @@ form button:hover {
     background: var(--color-acento-hov);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(230, 126, 34, 0.3);
+}
+
+/* Tabla Especificaciones*/
+
+/*.producto-especificaciones {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: .4rem;
+    background: var(--color-fondo);
+    padding: 1.5rem;
+    border: 2px solid var(--color-acento);
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, .05);
+}*/
+
+.producto-especificaciones {
+    background: var(--color-fondo);
+    padding: 2.5rem;
+    border: 1px solid var(--color-acento);
+    border-radius: 20px;
+}
+
+.producto-especificaciones h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.especificaiones-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+}
+
+.especificaiones-table tr {
+    border-bottom: 1px solid var(--color-text-2);
+    transition: background-color 0.2s ease;
+}
+
+.especificaiones-table tr:last-child {
+    border-bottom: none;
+}
+
+.especificaiones-table tr:nth-child(odd) {
+    background-color: rgba(241, 243, 245, 0.5);
+}
+
+.especificaiones-table th,
+.especificaiones-table td {
+    padding: 1rem 1.2rem;
+    font-size: 0.95rem;
+    text-align: left;
+}
+
+.especificaiones-table th {
+    color: var(--color-text-2);
+    font-weight: 600;
+    width: 30%;
+    min-width: 120px;
+}
+
+.especificaiones-table td {
+    color: var(--color-text-2);
+    font-weight: 700;
 }
 
 /* Seccion descripcion y reseña */ 
