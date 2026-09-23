@@ -11,14 +11,18 @@
 
         <!--Izqueirda: imagen del preducto-->
         <div class="producto-img-container bg-body bg-text">
-            <img src="{% static 'img/placa-madre-prod.jpg'%}" alt="Producto" class="producto-img">
+            {% if producto.imagen %}
+                <img src="{{ producto.imagen.url }}" alt="{ producto.nombre }" class="producto-img">
+            {% else %}
+                <p>Este producto no tiene imagen disponible.</p>
+            {% endif %}    
         </div>
 
         <!--Derecha: datos de compra-->
         <div class="producto-action-container">
 
-            <h2 class="producto-title">Placa Madre</h2>
-            <p class="producto-categoria">Categoría: Placa Madre</p>
+            <h2 class="producto-title">{{ producto.nombre }}</h2>
+            <p class="producto-categoria">Categoría: {{ producto.categoria.nombre}}</p>
 
             <!--Sistema de rating-->
             <div class="producto-rating">
@@ -31,16 +35,17 @@
                         <i class="fa-solid fa-star"></i>
                         <small>5/5</small>
                     </span>
-                <small class="text-muted">(12 reseñas)</small>
+                <small class="text-muted">({{ review.count }} reseñas)</small>
             </div>
 
-            <div class="producto-precio">Precio: <span>$500.000 ARS</span></div>
+            <div class="producto-precio">Precio: <span>${{ producto.precio|floatformat:2 }} ARS</span></div>
 
             <!--Opcoiones de compra y carrito-->
             <div class="producto-compra">
                 <div class="cantidad-container">
                     <label for="cantidad">Cantidad</label>
                     <input type="number" id="cantidad" name="cantidad" value="1" min="1" max="10">
+                    <span>stock: {{ producto.stock }}</span>
                 </div>
 
                 <div class="producto-buttons">
@@ -58,27 +63,18 @@
         <div class="title-line"></div>
         <table class="especificaciones-table">
             <tbody>
+                {% for espec in especificaciones %}
                 <tr>
-                    <th>Modelo:</th>
-                    <td>ASUS Prime B550M-A</td>
+                    <th>{{ espec.clave }}</th>
+                    <td>{{ espec.valor }}</td>
                 </tr>
-                <!-- campos de compatibilidad-->
+                {% empty %}
                 <tr>
-                    <th>Socket:</th>
-                    <td>AM4</td>
+                    <td colspan="2" style="text-align: center; color: var(--color-text-2);">
+                        No hay especifiocaciones tecnicas detalladas para este producto.
+                    </td>
                 </tr>
-                <tr>
-                    <th>Memoria:</th>
-                    <td>DDR4</td>
-                </tr>
-                <tr>
-                    <th>Formato:</th>
-                    <td>Micro-ATX</td>
-                </tr>
-                <tr>
-                    <th>Consumo:</th>
-                    <td>N/A</td>
-                </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
@@ -87,7 +83,7 @@
     <div class="producto-descripcion bg-body bg-text">
         <h2 class="bg-body bg-text">Descripción del producto</h2>
         <div class="title-line"></div>
-        <p class="bg-body bg-text">Aquí va el texto descriptivo del componente. Más adelante, cuando usemos MySQL, este texto se cargará dinámicamente desde el campo "descripcion" de tu modelo de Django.</p>
+        <p class="bg-body bg-text">{{ producto.descripcion }}</p>
     </div>
 
     <!--Bloque reseñas y comentarios-->

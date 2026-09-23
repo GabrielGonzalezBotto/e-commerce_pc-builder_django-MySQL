@@ -696,10 +696,13 @@ form button:hover {
 }
 
 .producto-title {
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
-    font-weight: 700;
+    font-size: clamp(1.6rem, 1.3vw, 2.4rem);
+    font-weight: 900;
     color: var(--color-acento);
     line-height: 1.2;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 .producto-categoria {
@@ -865,10 +868,14 @@ form button:hover {
 }*/
 
 .producto-especificaciones {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     background: var(--color-fondo);
     padding: 2.5rem;
     border: 1px solid var(--color-acento);
     border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, .02);
 }
 
 .producto-especificaciones h2 {
@@ -879,7 +886,7 @@ form button:hover {
 .especificaiones-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 1.5rem;
+    margin-top: 1.2rem;
 }
 
 .especificaiones-table tr {
@@ -905,7 +912,7 @@ form button:hover {
 .especificaiones-table th {
     color: var(--color-text-2);
     font-weight: 600;
-    width: 30%;
+    width: 35%;
     min-width: 120px;
 }
 
