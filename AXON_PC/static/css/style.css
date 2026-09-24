@@ -642,6 +642,16 @@ form button:hover {
     font-size: 58px;
 }
 
+/*======= TIENDA ========*/
+
+.empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--color-text-2);
+    padding: 40px 0;
+    font-size: 1.2rem;
+}
+
 /*======== PRODUTO ========*/
 
 .producto {

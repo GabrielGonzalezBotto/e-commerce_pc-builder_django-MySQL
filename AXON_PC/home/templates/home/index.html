@@ -139,115 +139,45 @@
 
     <seccion class="comp-ven">
 
+        <div class="grid-container-ven">
+            {% for prod in productos%}
+            <div class="card-prod">
+                {% if prod.imagen %}
+                    <img class="card-prod-img" src="{% static 'img/placa-madre-prod.jpg'%}" alt="imagen producto">
+                {% else %}
+                    <img class="card-prod-img" src="{% static 'img/default.jpg'%}" alt="sin imagen">
+                {% endif %}
 
-    <div class="grid-container-ven">
-        
-        <div class="card-prod">
-            <img class="card-prod-img" src="{% static 'img/placa-madre-prod.jpg'%}" alt="imagen producto">
-            <h3>Placa Madre</h3>
-            <div class="card-icon">
-                <i class="fa-regular fa-heart"></i>
-            </div>
-            <div class="rating">
-                <ul class="list-star">
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-regular fa-star"></i></a>
-                </ul>
-                <span>4/5</span>
-            </div>
-            <div class="card-prod-content">
-                <span>categoria: Placa Madre</span>
-                <br>
-                <span>precio: <b>500.000 ARS</b></span>
-                <div class="buttons">
-                    <a class="card-prod-btn" href="#">añadir</a>
-                    <a class="card-prod-btn" href="#">ver</a>
+                <h3>{{ prod.nombre }}</h3>
+                <div class="card-icon bg-body bg-text">
+                    <i class="fa-regular fa-heart"></i>
+                </div>
+                <div class="rating">
+                    <ul class="list-star">
+                        <a href="#"><i class="fa-solid fa-star"></i></a>
+                        <a href="#"><i class="fa-solid fa-star"></i></a>
+                        <a href="#"><i class="fa-solid fa-star"></i></a>
+                        <a href="#"><i class="fa-solid fa-star"></i></a>
+                        <a href="#"><i class="fa-regular fa-star"></i></a>
+                    </ul>
+                    <span>4/5</span>
+                </div>
+                <div class="card-prod-content">
+                    <span>categoria: {{prod.categoria.nombre}}</span>
+                    <br>
+                    <span>precio: <b>${{ prod.precio|floatformat:2 }} ARS</b></span>
+                    <div class="buttons">
+                        <a class="card-prod-btn" href="#">añadir</a>
+                        <a class="card-prod-btn" href="{% url 'producto' prod.id %}">ver</a>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="card-prod">
-            <img class="card-prod-img" src="{% static 'img/placa-madre-prod.jpg'%}" alt="imagen producto">
-            <h3>Placa Madre</h3>
-            <div class="card-icon">
-                <i class="fa-regular fa-heart"></i>
-            </div>
-            <div class="rating">
-                <ul class="list-star">
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-regular fa-star"></i></a>
-                </ul>
-                <span>4/5</span>
-            </div>
-            <div class="card-prod-content">
-                <span>categoria: Placa Madre</span>
-                <br>
-                <span>precio: <b>500.000 ARS</b></span>
-                <div class="buttons">
-                    <a class="card-prod-btn" href="#">añadir</a>
-                    <a class="card-prod-btn" href="#">ver</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="card-prod">
-            <img class="card-prod-img" src="{% static 'img/placa-madre-prod.jpg'%}" alt="imagen producto">
-            <h3>Placa Madre</h3>
-            <div class="card-icon">
-                <i class="fa-regular fa-heart"></i>
-            </div>
-            <div class="rating">
-                <ul class="list-star">
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-regular fa-star"></i></a>
-                </ul>
-                <span>4/5</span>
-            </div>
-            <div class="card-prod-content">
-                <span>categoria: Placa Madre</span>
-                <br>
-                <span>precio: <b>500.000 ARS</b></span>
-                <div class="buttons">
-                    <a class="card-prod-btn" href="#">añadir</a>
-                    <a class="card-prod-btn" href="#">ver</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="card-prod">
-            <img class="card-prod-img" src="{% static 'img/placa-madre-prod.jpg'%}" alt="imagen producto">
-            <h3>Placa Madre</h3>
-            <div class="card-icon">
-                <i class="fa-regular fa-heart"></i>
-            </div>
-            <div class="rating">
-                <ul class="list-star">
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-regular fa-star"></i></a>
-                </ul>
-                <span>4/5</span>
-            </div>
-            <div class="card-prod-content">
-                <span>categoria: Placa Madre</span>
-                <br>
-                <span>precio: <b>500.000 ARS</b></span>
-                <div class="buttons">
-                    <a class="card-prod-btn" href="#">añadir</a>
-                    <a class="card-prod-btn" href="#">ver</a>
-                </div>
-            </div>
+            {% empty %}
+                <p class="empty">
+                    Próximamente los componentes más vendidos.
+                </p>
+            {% endfor %}
+            
         </div>
 
     </div>
@@ -263,115 +193,43 @@
     <section class="ult__com">
 
         <div class="grid-container-ult">
-
+            {% for prod in productos%}
             <div class="card-prod">
-            <img class="card-prod-img" src="{% static 'img/placa-madre-prod.jpg'%}" alt="imagen producto">
-            <h3>Placa Madre</h3>
-            <div class="card-icon">
-                <i class="fa-regular fa-heart"></i>
-            </div>
-            <div class="rating">
-                <ul class="list-star">
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-regular fa-star"></i></a>
-                </ul>
-                <span>4/5</span>
-            </div>
-            <div class="card-prod-content">
-                <span>categoria: Placa Madre</span>
-                <br>
-                <span>precio: <b>500.000 ARS</b></span>
-                <div class="buttons">
-                    <a class="card-prod-btn" href="#">añadir</a>
-                    <a class="card-prod-btn" href="#">ver</a>
+                {% if prod.imagen %}
+                    <img class="card-prod-img" src="{% static 'img/placa-madre-prod.jpg'%}" alt="imagen producto">
+                {% else %}
+                    <img class="card-prod-img" src="{% static 'img/default.jpg'%}" alt="sin imagen">
+                {% endif %}
+
+                <h3>{{ prod.nombre }}</h3>
+                <div class="card-icon bg-body bg-text">
+                    <i class="fa-regular fa-heart"></i>
+                </div>
+                <div class="rating">
+                    <ul class="list-star">
+                        <a href="#"><i class="fa-solid fa-star"></i></a>
+                        <a href="#"><i class="fa-solid fa-star"></i></a>
+                        <a href="#"><i class="fa-solid fa-star"></i></a>
+                        <a href="#"><i class="fa-solid fa-star"></i></a>
+                        <a href="#"><i class="fa-regular fa-star"></i></a>
+                    </ul>
+                    <span>4/5</span>
+                </div>
+                <div class="card-prod-content">
+                    <span>categoria: {{prod.categoria.nombre}}</span>
+                    <br>
+                    <span>precio: <b>${{ prod.precio|floatformat:2 }} ARS</b></span>
+                    <div class="buttons">
+                        <a class="card-prod-btn" href="#">añadir</a>
+                        <a class="card-prod-btn" href="{% url 'producto' prod.id %}">ver</a>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="card-prod">
-            <img class="card-prod-img" src="{% static 'img/placa-madre-prod.jpg'%}" alt="imagen producto">
-            <h3>Placa Madre</h3>
-            <div class="card-icon">
-                <i class="fa-regular fa-heart"></i>
-            </div>
-            <div class="rating">
-                <ul class="list-star">
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-regular fa-star"></i></a>
-                </ul>
-                <span>4/5</span>
-            </div>
-            <div class="card-prod-content">
-                <span>categoria: Placa Madre</span>
-                <br>
-                <span>precio: <b>500.000 ARS</b></span>
-                <div class="buttons">
-                    <a class="card-prod-btn" href="#">añadir</a>
-                    <a class="card-prod-btn" href="#">ver</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="card-prod">
-            <img class="card-prod-img" src="{% static 'img/placa-madre-prod.jpg'%}" alt="imagen producto">
-            <h3>Placa Madre</h3>
-            <div class="card-icon">
-                <i class="fa-regular fa-heart"></i>
-            </div>
-            <div class="rating">
-                <ul class="list-star">
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-regular fa-star"></i></a>
-                </ul>
-                <span>4/5</span>
-            </div>
-            <div class="card-prod-content">
-                <span>categoria: Placa Madre</span>
-                <br>
-                <span>precio: <b>500.000 ARS</b></span>
-                <div class="buttons">
-                    <a class="card-prod-btn" href="#">añadir</a>
-                    <a class="card-prod-btn" href="#">ver</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="card-prod">
-            <img class="card-prod-img" src="{% static 'img/placa-madre-prod.jpg'%}" alt="imagen producto">
-            <h3>Placa Madre</h3>
-            <div class="card-icon">
-                <i class="fa-regular fa-heart"></i>
-            </div>
-            <div class="rating">
-                <ul class="list-star">
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                    <a href="#"><i class="fa-regular fa-star"></i></a>
-                </ul>
-                <span>4/5</span>
-            </div>
-            <div class="card-prod-content">
-                <span>categoria: Placa Madre</span>
-                <br>
-                <span>precio: <b>500.000 ARS</b></span>
-                <div class="buttons">
-                    <a class="card-prod-btn" href="#">añadir</a>
-                    <a class="card-prod-btn" href="#">ver</a>
-                </div>
-            </div>
-        </div>
-
+            {% empty %}
+                <p class="empty">
+                    Próximamente los últimos componentes a tu disposición.
+                </p>
+            {% endfor %}
         </div>
     </section>
 {% endblock %}
