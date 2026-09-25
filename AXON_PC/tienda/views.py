@@ -3,8 +3,13 @@ from .models import Producto
 
 # Create your views here.
 def tienda(request):
-    #render toma el request y el HTML para mostrar
-    return render(request, 'tienda/tienda.html')
+    productos = Producto.objects.all()
+
+    context = {
+        'productos': productos,
+    }
+    
+    return render(request, 'tienda/tienda.html', context)
 
 def producto(request, pk):
     producto = get_object_or_404(Producto, pk=pk)

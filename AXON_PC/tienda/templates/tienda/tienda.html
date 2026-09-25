@@ -122,9 +122,9 @@
             {% for prod in productos%}
             <div class="card-prod">
                 {% if prod.imagen %}
-                    <img class="card-prod-img" src="{% static 'img/placa-madre-prod.jpg'%}" alt="imagen producto">
+                    <img class="card-prod-img" src="{{ prod.imagen.url }}" alt="{{ prod.nombre }}">
                 {% else %}
-                    <img class="card-prod-img" src="{% static 'img/default.jpg'%}" alt="sin imagen">
+                    <img class="card-prod-img" src="{% static 'img/favicon.jpg'%}" alt="sin imagen">
                 {% endif %}
 
                 <h3>{{ prod.nombre }}</h3>
