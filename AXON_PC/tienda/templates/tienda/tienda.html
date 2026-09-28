@@ -98,7 +98,7 @@
 
         <a href="">
             <div class="box-cat">
-                <img src="" alt="Tienda">
+                <img class="icon-cat" src="{% static 'img/tienda.png'%}" alt="Tienda">
                 <h3>tienda</h3>
             </div>
         </a>
@@ -159,5 +159,44 @@
             
         </div>
     </section>
+
+    <!-- PAGINACIÓN CORREGIDA CON ENLACES DE RECUERDO COMPLETOS -->
+<nav aria-label="Paginación" class="pagination" style="margin-top: 30px; margin-bottom: 50px;">
+    <ul class="pagination justify-content-center">
+        {% if productos.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page=1{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orden_fecha %}&orden_fecha={{ request.GET.orden_fecha }}{% endif %}{% if request.GET.orden_comentarios %}&orden_comentarios={{ request.GET.orden_comentarios }}{% endif %}">Primera</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="?page={{ productos.previous_page_number }}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orden_fecha %}&orden_fecha={{ request.GET.orden_fecha }}{% endif %}{% if request.GET.orden_comentarios %}&orden_comentarios={{ request.GET.orden_comentarios }}{% endif %}">Anterior</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled"><span class="page-link">Primera</span></li>
+        <li class="page-item disabled"><span class="page-link">Anterior</span></li>
+        {% endif %}
+
+        {% for num in productos.paginator.page_range %}
+        {% if productos.number == num %}
+        <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+        {% elif num > productos.number|add:'-3' and num < productos.number|add:'3' %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ num }}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orden_fecha %}&orden_fecha={{ request.GET.orden_fecha }}{% endif %}{% if request.GET.orden_comentarios %}&orden_comentarios={{ request.GET.orden_comentarios }}{% endif %}">{{ num }}</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+
+        {% if productos.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ productos.next_page_number }}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orden_fecha %}&orden_fecha={{ request.GET.orden_fecha }}{% endif %}{% if request.GET.orden_comentarios %}&orden_comentarios={{ request.GET.orden_comentarios }}{% endif %}">Siguiente</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="?page={{ productos.paginator.num_pages }}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orden_fecha %}&orden_fecha={{ request.GET.orden_fecha }}{% endif %}{% if request.GET.orden_comentarios %}&orden_comentarios={{ request.GET.orden_comentarios }}{% endif %}">Ultima</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled"><span class="page-link">Siguiente</span></li>
+        <li class="page-item disabled"><span class="page-link">Ultima</span></li>
+        {% endif %}
+    </ul>
+</nav>
 
 {% endblock %}
