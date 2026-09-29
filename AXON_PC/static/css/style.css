@@ -652,6 +652,54 @@ form button:hover {
     font-size: 1.2rem;
 }
 
+/* PAGINACION */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    list-style: none;
+    padding: 0;
+    margin: 3rem 0;
+    flex-wrap: wrap;
+}
+
+.page-item {
+    color: var(--color-acento);
+    /*background-color: transparent;*/
+    text-decoration: none !important;
+    transition: all 0.25s ease;
+    font-weight: 600;
+}
+
+.page-item:hover:not(.activate):not(.disable) {
+    /*background-color: transparent;*/
+    /* color: #1a1a2e;*/
+    transform: scale(1.08);
+    /*border-color: var(--color-acento);*/
+}
+
+.page-item.active {
+    background-color: var(--color-acento);
+    /*color:#1a1a2e;*/
+    transform: scale(1.05);
+    /*box-shadow: 0 4px 12px rgba(102, 204, 238, 0.3);*/
+    font-weight: 700;
+}
+
+.page-item.disabled {
+    opacity: 0.35;
+    border-color: var(--color-text-2);
+    color: var(--color-text-2);
+}
+
+.page-item a {
+    background-color: var(--color-acento);
+    color: var(--color-fondo);
+}
+
+
+
 /*======== PRODUTO ========*/
 
 .producto {
