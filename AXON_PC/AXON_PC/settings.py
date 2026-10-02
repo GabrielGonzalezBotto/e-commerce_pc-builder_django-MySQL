@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'AXON_PC.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': env('DB_NAME', default='db_axon_pc'),
+        'NAME': env('DB_NAME', default='db_axonpc'),
         'USER': env('DB_USER', default='root'),
         'PASSWORD': env('DB_PASSWORD', default='2273'),
         'HOST': env('DB_HOST', default='127.0.0.1'),

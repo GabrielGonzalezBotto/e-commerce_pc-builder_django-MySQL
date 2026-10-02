@@ -1,5 +1,5 @@
 from django.db import models
-from django.conf import setting
+from django.conf import settings
 
 # Create your models here.
 class Categoria(models.Model):
@@ -35,7 +35,7 @@ class EspecificacionTecnica(models.Model):
 
 class Review(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE, related_name='reviews')
-    ususario = models.ForeignKey(setting.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='reviews')
+    ususario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='reviews')
     comentario = models.TextField()
     stars = models.IntegerField(choices=[(i,i) for i in range(1,6)], default=5)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
