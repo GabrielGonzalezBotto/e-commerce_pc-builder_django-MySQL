@@ -96,6 +96,29 @@ body {
     /*text-shadow: 0 0 10px var(--color-acento-hov);*/
 }
 
+/*------- PERFIL EN  NAVBAR ----------*/
+
+.perfil-user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    cursor: pointer;
+}
+
+
+.img-perfil i {
+    color: var(--color-acento);
+    font-size: 2rem;
+    align-items: center;
+}
+
+.perfil-user span{
+    color: var(--color-acento);
+    font-size: .9rem;
+    font-weight: 600;
+}
+
 /*------ BUSCADOR ------*/
 
 .search {
@@ -1170,6 +1193,7 @@ form button:hover {
     background: rgba(255, 255, 255, 0.1);
     color: #ff0055;
 }
+
 
 
 /*======= FOOTER ======*/
