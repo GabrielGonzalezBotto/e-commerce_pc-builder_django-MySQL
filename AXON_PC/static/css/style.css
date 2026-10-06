@@ -100,12 +100,13 @@ body {
 
 .perfil-user {
     display: flex;
+    flex-direction: column;
+    text-align: center;
     align-items: center;
     justify-content: center;
     gap: 0.2rem;
     cursor: pointer;
 }
-
 
 .img-perfil i {
     color: var(--color-acento);

@@ -53,22 +53,47 @@
                         </button>
                     </form>
 
-                    <!-------- LOGIN ------>
-                    <!--<div class="nav-btn-container">
-                        <a href="#" class="btn">Iniciar sesión</a>
-                    </div>-->
-
-                    <div class="perfil-user">
-                        <div class="img-perfil">
-                            <i class="fa-solid fa-circle-user"></i>
-                        </div>
-                        <span>Juan Perez</span>
-                    </div>
-
                     <!-------- BOTON CLARO/OSCURO ------->
                     <button id="toggle-theme" class="btn btn-outline-secondary" style="width: 45px; height: 45px; color: var(--color-acento); border: 2px solid var(--color-acento); border-radius: 50%;">
                         <!--<i class="fa-solid fa-moon"></i> / <i class="fa-solid fa-sun"></i>--> <i class="fa-solid fa-circle-half-stroke"></i>
                     </button>
+
+                    <!-------- LOGIN ------>
+                
+                    
+                    <div class="perfil-user">
+                        <input type="checkbox" class="menu-checkbox" id="perfil-menu">
+                        <label for="perfil-menu" class="menu-label">
+                            <div class="img-perfil">
+                                <i class="fa-solid fa-circle-user"></i>
+                            </div>
+                        <span>Juan Perez</span>
+                        </label>
+
+                        <div class="dropdown-menu">
+                            <div class="dropdown-item">
+                                <form action="#" method="get">
+                                    {% csrf_token %}
+                                    <button type="submit" class="edit-btn" aria-label="Editar comentario"><i class="fa-solid fa-user"></i> Ver Perfil</button>
+                                </form>
+                                <form action="#" method="get">
+                                    {% csrf_token %} 
+                                    <button type="submit" class="delete-btn" aria-label="Eliminar comentario"><i class="fa-solid fa-power-off"></i> Cerrar Sesión</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--<div class="nav-btn-container">
+                        <a href="#" class="btn">Iniciar sesión</a>
+                    </div>-->
+
+                    <!--<div class="perfil-user">
+                        <div class="img-perfil">
+                            <i class="fa-solid fa-circle-user"></i>
+                        </div>
+                        <span>Juan Perez</span>
+                    </div>-->
                 </nav>
             </div>
     </header>
