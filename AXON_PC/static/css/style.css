@@ -1195,7 +1195,92 @@ form button:hover {
     color: #ff0055;
 }
 
+/*======== REGISTO/LOGIN ========*/
 
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(80vh - 20px);
+    padding: 2rem 1.5rem;
+    background-color: var(--color-fondo);
+}
+
+.login-card {
+    border: 1px solid var(--color-acento);
+    border-radius: 20px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.login-title {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.login-input {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.login-input i {
+    position: absolute;
+    right: 38%;
+    color: var(--color-acento);
+}
+
+.login-input label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--color-acento);
+}
+
+.login-input input {
+    width: 100%;
+    height: 42px;
+    padding: 0 12px;
+    outline: none;
+    background: transparent;
+    border: 2px solid var(--color-text-2);
+    border-radius: 12px;
+    font-size: 0.95rem;
+    color: var(--color-text-2);
+    transition: border-color 0.2s;
+}
+
+.login-input input:focus {
+    border-color: var(--color-acento);
+}
+
+.btn-login {
+    background: var(--color-acento);
+    color: var(--color-fondo);
+    border: none;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 0.70rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 0.5rem;
+}
+
+.btn-login:hover {
+    background-color: var(--color-acento-hov);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
 
 /*======= FOOTER ======*/
 

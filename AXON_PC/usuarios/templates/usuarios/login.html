@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="login-container bg-body bg-text">
+    <div class="login-card">
+        <h2 class="login-title bg-body bg-text">Iniciar Sesión</h2>
+        <div class="title-line" style="margin-bottom: 2rem;"></div>
+
+        <!--Mesnaje de error en contraseña-->
+        {% if messeges %}
+            {% for message in messages %}
+                <div class="alert {{ message.tags }}"><i class="fa-solid fa-circle-exclamation"></i> {{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <form action="{% url 'login' %}" method="POST" class="login-form">
+            {% csrf_token %}
+
+                <div class="login-input">
+                    <label for="{{ form.username.id_for_label }}">Nombre de usuario</label>
+                    <input type="text" name="{{ form.username.html_name }}" 
+                    id="{{ form.username.id_fol_label }}" 
+                    value="{{ form.username.value|default_if_none:'' }}">
+                    {% if form.username.errors %}
+                        <small class="text-error">{{ form.username.errors|striptags }}</small>
+                    {% endif %}
+                    <i class="fa-solid fa-user"></i>
+                </div>
+
+                <!--CONTRASEÑA-->
+                <div class="login-input">
+                    <label for="{{ field.id_for_label }}">Contraseña</label>
+                    <input type="password">
+                    {% if field.errors %}
+                        <small class="text-error">{{ field.errors|striptags }}</small>
+                    {% endif %}
+                    <i class="fa-solid fa-eye"></i>
+                </div>
+
+            <button type="submit" class="btn-login">Ingresar a Axon PC</button>
+        </form>
+
+        <div class="login-footer">
+            <p>¿No tenés una ceunta todavía? <a href="{% url 'registro' %}">Registrate acá</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

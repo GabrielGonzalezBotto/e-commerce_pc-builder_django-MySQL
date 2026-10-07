@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="login-container bg-body bg-text">
+    <div class="login-card">
+        <h2 class="login-title">Registro</h2>
+        <div class="title-line" style="margin-bottom: 2rem;"></div>
+
+        <!--Mesnaje de error en contraseña-->
+        {% if messeges %}
+            {% for message in messages %}
+                <div class="alert {{ message.tags }}"><i class="fa-solid fa-circle-exclamation"></i> {{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <form action="{% url 'login' %}" method="POST" class="login-form">
+            {% csrf_token %}
+
+                <div class="login-input">
+                    <label for="{{ field.id_for_label }}">Nombre de usuario</label>
+                    <input type="text">
+                    {% if field.errors %}
+                        <small class="text-error">{{ field.errors|striptags }}</small>
+                    {% endif %}
+                    <i class="fa-solid fa-user"></i>
+                </div>
+
+                <!--EMAIL-->
+
+                <div class="login-input">
+                    <label for="{{ form.email.id_for_label }}">Email</label>
+                    <input type="text" name="{{ form.email.html_name }}" id="{{ form.email.id_for_label }}"
+                    value="{{ form.email.value|default_if_none:'' }}">
+                    {% if form.email.errors %}
+                        <small class="text-error">{{ form.email.errors|striptags }}</small>
+                    {% endif %}
+                    <i class="fa-solid fa-at"></i>
+                </div>
+
+                <!--CONTRASEÑA-->
+                <div class="login-input">
+                    <label for="{{ form.password1.id_for_label }}">Contraseña</label>
+                    <input type="password" name="{{ form.password1.html_name }}"
+                    id="{{ form.password1.id_for_label }}">
+                    <span class="input-text" style="cursor: pointer;" onclick="togglePassword('{{ from.password1.id_for_label }}')">
+                        <i class="fa-solid fa-eye" id="icon-{{ form.password1.id_for_label }}"></i>
+                    </span>
+                    {% if form.password1.errors %}
+                        <small class="text-error">{{ form.password1.errors|striptags }}</small>
+                    {% endif %}
+                </div>
+
+                <div class="login-input">
+                    <label for="{{ form.password2.id_for_label }}">Contraseña</label>
+                    <input type="password" name="{{ form.password2.html_name }}"
+                    id="{{ form.password2.id_for_label }}">
+                    <span style="cursor: pointer;" onclick="togglePassword('{{ from.password2.id_for_label }}')">
+                        <i class="fa-solid fa-eye" id="icon-{{ form.password2.id_for_label }}"></i>
+                    </span>
+                    {% if form.password2.errors %}
+                        <small class="text-error">{{ form.password2.errors|striptags }}</small>
+                    {% endif %}
+                </div>
+
+                <!--TELEFONO-->
+                <div class="login-input">
+                    <label for="{{ field.id_for_label }}">Num.Teléfono</label>
+                    <input type="text">
+                    {% if field.errors %}
+                        <small class="text-error">{{ field.errors|striptags }}</small>
+                    {% endif %}
+                    <i class="fa-solid fa-phone"></i>
+                </div>
+
+                <!--POSTAL-->
+                <div class="login-input">
+                    <label for="{{ field.id_for_label }}">Código Postal</label>
+                    <input type="text">
+                    {% if field.errors %}
+                        <small class="text-error">{{ field.errors|striptags }}</small>
+                    {% endif %}
+                    <i class="fa-solid fa-truck"></i>
+                </div>
+
+                <!--LOCALIDAD-->
+                <div class="login-input">
+                    <label for="{{ field.id_for_label }}">Localidad</label>
+                    <input type="text">
+                    {% if field.errors %}
+                        <small class="text-error">{{ field.errors|striptags }}</small>
+                    {% endif %}
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+
+                <!--DOMICILIO-->
+                <div class="login-input">
+                    <label for="{{ field.id_for_label }}">Dir. Domicilio</label>
+                    <input type="text">
+                    {% if field.errors %}
+                        <small class="text-error">{{ field.errors|striptags }}</small>
+                    {% endif %}
+                    <i class="fa-solid fa-street-view"></i>
+                </div>
+
+            <button type="submit" class="btn-login">Ingresar a Axon PC</button>
+        </form>
+
+        <div class="login-footer">
+            <p>¿No tenés una ceunta todavía? <a href="#">Registrate acá</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
