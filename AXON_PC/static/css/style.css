@@ -1240,6 +1240,11 @@ form button:hover {
     color: var(--color-acento);
 }
 
+.input-text {
+    position: absolute;
+    right: 38%;
+}
+
 .login-input label {
     font-weight: 600;
     font-size: 0.95rem;
@@ -1280,6 +1285,42 @@ form button:hover {
     background-color: var(--color-acento-hov);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.alert {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: var(--color-error);
+    padding: 0.70rem 1rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.text-error {
+    color: var(--color-error);
+    font-size: 0.80rem;
+    font-weight: 600;
+}
+
+.login-footer {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--color-text-2);
+}
+
+.login-footer a {
+    color: var(--color-acento);
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.login-footer a:hover {
+    color: var(--color-acento-hov);
 }
 
 /*======= FOOTER ======*/

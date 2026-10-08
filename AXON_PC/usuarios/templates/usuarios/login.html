@@ -8,7 +8,7 @@
         <div class="title-line" style="margin-bottom: 2rem;"></div>
 
         <!--Mesnaje de error en contraseña-->
-        {% if messeges %}
+        {% if messages %}
             {% for message in messages %}
                 <div class="alert {{ message.tags }}"><i class="fa-solid fa-circle-exclamation"></i> {{ message }}</div>
             {% endfor %}
@@ -19,8 +19,8 @@
 
                 <div class="login-input">
                     <label for="{{ form.username.id_for_label }}">Nombre de usuario</label>
-                    <input type="text" name="{{ form.username.html_name }}" 
-                    id="{{ form.username.id_fol_label }}" 
+                    <input type="text" name="username" 
+                    id="{{ form.username.id_for_label }}" 
                     value="{{ form.username.value|default_if_none:'' }}">
                     {% if form.username.errors %}
                         <small class="text-error">{{ form.username.errors|striptags }}</small>
@@ -30,12 +30,16 @@
 
                 <!--CONTRASEÑA-->
                 <div class="login-input">
-                    <label for="{{ field.id_for_label }}">Contraseña</label>
-                    <input type="password">
-                    {% if field.errors %}
-                        <small class="text-error">{{ field.errors|striptags }}</small>
+                    <label for="id_password">Contraseña</label>
+                    <input type="password" name="password"
+                    id="id_password">
+                    <!--<span class="input-text" style="cursor: pointer;" onclick="togglePassword('{{ from.password1.id_for_label }}')">
+                        <i class="fa-solid fa-eye" id="icon-{{ form.password1.id_for_label }}"></i>
+                    </span>-->
+                    <i class="fa-solid fa-eye" style="cursor: pointer;" onclick="togglePassword('id_password')" id="icon-id_password"></i>
+                    {% if form.password.errors %}
+                        <small class="text-error">{{ form.password.errors|striptags }}</small>
                     {% endif %}
-                    <i class="fa-solid fa-eye"></i>
                 </div>
 
             <button type="submit" class="btn-login">Ingresar a Axon PC</button>
