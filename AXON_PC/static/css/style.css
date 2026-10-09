@@ -105,7 +105,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 0.2rem;
-    cursor: pointer;
+    cursor: pointer !important;
 }
 
 .img-perfil i {
@@ -1292,7 +1292,7 @@ form button:hover {
     color: var(--color-error);
     padding: 0.70rem 1rem;
     border-radius: 10px;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 600;
     margin-bottom: 1.5rem;
     display: flex;
@@ -1322,6 +1322,7 @@ form button:hover {
 .login-footer a:hover {
     color: var(--color-acento-hov);
 }
+
 
 /*======= FOOTER ======*/
 

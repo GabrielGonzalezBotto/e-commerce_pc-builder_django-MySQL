@@ -60,14 +60,14 @@
 
                     <!-------- LOGIN ------>
                 
-                    
+                {% if user.is_authenticated %}
                     <div class="perfil-user">
                         <input type="checkbox" class="menu-checkbox" id="perfil-menu">
                         <label for="perfil-menu" class="menu-label">
                             <div class="img-perfil">
                                 <i class="fa-solid fa-circle-user"></i>
                             </div>
-                        <span>Juan Perez</span>
+                        <span>{{ user.first_name }} {{ user.last_name }}</span>
                         </label>
 
                         <div class="dropdown-menu">
@@ -76,17 +76,19 @@
                                     {% csrf_token %}
                                     <button type="submit" class="edit-btn" aria-label="Editar comentario"><i class="fa-solid fa-user"></i> Ver Perfil</button>
                                 </form>
-                                <form action="#" method="get">
+                                <form action="{% url 'logout' %}" method="post">
                                     {% csrf_token %} 
                                     <button type="submit" class="delete-btn" aria-label="Eliminar comentario"><i class="fa-solid fa-power-off"></i> Cerrar Sesión</button>
                                 </form>
                             </div>
                         </div>
                     </div>
+                {% else %}
 
-                    <!--<div class="nav-btn-container">
-                        <a href="#" class="btn">Iniciar sesión</a>
-                    </div>-->
+                    <div class="nav-btn-container">
+                        <a href="{% url 'login' %}" class="btn">Iniciar sesión</a>
+                    </div>
+                {% endif %}
 
                     <!--<div class="perfil-user">
                         <div class="img-perfil">
