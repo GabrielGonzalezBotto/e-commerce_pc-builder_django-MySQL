@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}AXON PC | Mi Perfil{% endblock %}
+
+{% block content %}
+
+<div class="perfil">
+    <div class="perfil-container">
+        <aside class="perfil-sidebar bg-body bg-text">
+            <div class="perfil-user-info">
+                <i class="fa-solid fa-circle-user"></i>
+                <h3>{{user.firs_name}} {{user.last_name}}</h3>
+                <p>{{user.username}}</p>
+            </div>
+
+            <div class="title-line" style="margin: 1.5rem 0;"></div>
+
+            <!--NAVEGACION INTERNA-->
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-link-perfil active"><i class="fa-solid fa-id-card"></i> Mis Datos</a>
+                <a href="#" class="nav-link-perfil"><i class="fa-solid fa-box-open"></i> Mis Compras</a>
+                <a href="#" class="nav-link-perfil"><i class="fa-solid fa-heart"></i> Mis Favoritos</a>
+                <form action="{% url 'logout'%}" method="post" style="margin-top: 2rem;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-sidebar-logout"><i class="fa-solid fa-power-off"></i> Cerrar Sesión</button>
+                </form>
+            </nav>
+        </aside>
+
+        <!--SECCION PRINCIPAL-->
+        <main class="perfil-content">
+            <section class="content-card bg-body bg-text">
+                <h2 class="section-title"><i class="fa-solid fa-id-card"></i> Datos Personales y de Envío</h2>
+                <div class="title-line" style="margin: 1.5rem 0;"></div>
+
+                <div class="info-grid">
+                    <div class="info-group">
+                        <label>Nombre Completo</label>
+                        <p>{{ user.first_name }} {{ user.last_name }}</p>
+                    </div>
+
+                    <div class="info-group">
+                        <label>Email</label>
+                        <p>{{ user.email }}</p>
+                    </div>
+
+                    <div class="info-group">
+                        <label>Teléfono de Contacto</label>
+                        <p>
+                            {% if user.telefono %}
+                                {{ user.telefono }}
+                            {% else %}
+                                <span class="text-muted">No cargado todavía</span>
+                            {% endif %}
+                        </p>
+                    </div>
+
+                    <div class="info-group">
+                        <label>Código Postal</label>
+                        <p>
+                            {% if user.postal %}
+                                {{ user.postal }}
+                            {% else %}
+                                <span class="text-muted">No cargado todavía</span>
+                            {% endif %}
+                        </p>
+                    </div>
+
+                    <div class="info-group" style="grid-column: 1 / -1;">
+                        <label>Domicilio</label>
+                        <p>
+                            {% if user.direccion %}
+                                {{ user.direccion }}
+                            {% else %}
+                                <span class="text-muted">No cargada todavía. Podés completarla al realizar tu primera compra de hardware.</span>
+                            {% endif %}
+                        </p>
+                    </div>
+
+                    <div class="actins-group" style="margin-top: 2rem;">
+                        <a href="#" class="btn-perfil-action">Completar Datos de Envío</a>
+                    </div>
+                </div>
+            </section>
+
+            <!--HISTORIAL DE COMPRAS-->
+            <section id="mis-compras" class="conten-card bg-body bg-text" style="margin-top: 2rem;">
+                <h2 class="section-title"><i class="fa-solid fa-box-open"></i> Historial de Compras</h2>
+                <div class="title-line" style="margin: 1rem 0 2rem 0;"></div>
+
+                <div class="empty-perfil-state">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <p>Todavía no realizaste ninguna compra en Axon PC.</p>
+                    <a href="{% url 'tienda' %}" class="btn-perfil-action" style="margin-top: 1rem;">Ir a la tienda</a>
+                </div>
+            </section>
+
+            <!--FAVORITOS-->
+            <section id="mis-favoritos" class="conten-card bg-body bg-text" style="margin-top: 2rem;">
+                <h2 class="section-title"><i class="fa-solid fa-heart"></i> Mis Compenentes favoritos</h2>
+                <div class="title-line" style="margin: 1rem 0 2rem 0;"></div>
+
+                <div class="empty-perfil-state">
+                    <i class="fa-regular fa-heart"></i>
+                    <p>Tu lista de deseos está vacía. ¡Dale amor a los componentes que te gusten para guardarlos acá!</p>
+                </div>
+            </section>
+        </main>
+    </div>
+</div>
+
+{% endblock %}

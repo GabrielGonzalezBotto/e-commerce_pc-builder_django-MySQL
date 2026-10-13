@@ -72,7 +72,7 @@
 
                         <div class="dropdown-menu">
                             <div class="dropdown-item">
-                                <form action="#" method="get">
+                                <form action="{% url 'perfil' %}" method="get">
                                     {% csrf_token %}
                                     <button type="submit" class="edit-btn" aria-label="Editar comentario"><i class="fa-solid fa-user"></i> Ver Perfil</button>
                                 </form>
