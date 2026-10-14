@@ -10,7 +10,7 @@
         <aside class="perfil-sidebar bg-body bg-text">
             <div class="perfil-user-info">
                 <i class="fa-solid fa-circle-user"></i>
-                <h3>{{user.firs_name}} {{user.last_name}}</h3>
+                <h3>{{user.first_name}} {{user.last_name}}</h3>
                 <p>{{user.username}}</p>
             </div>
 
@@ -18,9 +18,9 @@
 
             <!--NAVEGACION INTERNA-->
             <nav class="sidebar-nav">
-                <a href="#" class="nav-link-perfil active"><i class="fa-solid fa-id-card"></i> Mis Datos</a>
-                <a href="#" class="nav-link-perfil"><i class="fa-solid fa-box-open"></i> Mis Compras</a>
-                <a href="#" class="nav-link-perfil"><i class="fa-solid fa-heart"></i> Mis Favoritos</a>
+                <a href="#mis-datos" class="nav-link-perfil active"><i class="fa-solid fa-id-card"></i> Mis Datos</a>
+                <a href="#mis-compras" class="nav-link-perfil"><i class="fa-solid fa-box-open"></i> Mis Compras</a>
+                <a href="#mis-favoritos" class="nav-link-perfil"><i class="fa-solid fa-heart"></i> Mis Favoritos</a>
                 <form action="{% url 'logout'%}" method="post" style="margin-top: 2rem;">
                     {% csrf_token %}
                     <button type="submit" class="btn-sidebar-logout"><i class="fa-solid fa-power-off"></i> Cerrar Sesión</button>
@@ -30,7 +30,7 @@
 
         <!--SECCION PRINCIPAL-->
         <main class="perfil-content">
-            <section class="content-card bg-body bg-text">
+            <section class="content-card  bg-body bg-text" id="mis-datos">
                 <h2 class="section-title"><i class="fa-solid fa-id-card"></i> Datos Personales y de Envío</h2>
                 <div class="title-line" style="margin: 1.5rem 0;"></div>
 
@@ -85,7 +85,7 @@
             </section>
 
             <!--HISTORIAL DE COMPRAS-->
-            <section id="mis-compras" class="conten-card bg-body bg-text" style="margin-top: 2rem;">
+            <section id="mis-compras" class="content-card bg-body bg-text" style="margin-top: 2rem;">
                 <h2 class="section-title"><i class="fa-solid fa-box-open"></i> Historial de Compras</h2>
                 <div class="title-line" style="margin: 1rem 0 2rem 0;"></div>
 
@@ -97,7 +97,7 @@
             </section>
 
             <!--FAVORITOS-->
-            <section id="mis-favoritos" class="conten-card bg-body bg-text" style="margin-top: 2rem;">
+            <section id="mis-favoritos" class="content-card bg-body bg-text" style="margin-top: 2rem;">
                 <h2 class="section-title"><i class="fa-solid fa-heart"></i> Mis Compenentes favoritos</h2>
                 <div class="title-line" style="margin: 1rem 0 2rem 0;"></div>
 

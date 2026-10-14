@@ -41,4 +41,7 @@ def logout_view(request):
 #ACCEDER A PERFIL LOGUEADO
 @login_required
 def perfil_view(request):
-    return render(request, 'usuarios/perfil.html')
+    context = {
+        'user': request.user
+    }
+    return render(request, 'usuarios/perfil.html', context)

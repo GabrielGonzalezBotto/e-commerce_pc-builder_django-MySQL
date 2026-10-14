@@ -1339,6 +1339,7 @@ form button:hover {
 }
 
 .perfil-sidebar {
+    position: sticky;
     flex: 1;
     min-width: 280px;
     max-width: 320px;
