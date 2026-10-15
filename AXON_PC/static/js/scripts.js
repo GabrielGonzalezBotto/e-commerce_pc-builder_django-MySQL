@@ -33,3 +33,5 @@ function togglePassword(inputId) {
         icon.classList.add('fa-eye');
     }
 }
+
+//Marcar producto como favorito

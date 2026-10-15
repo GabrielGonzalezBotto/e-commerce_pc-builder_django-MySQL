@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, Group, Permission
+from tienda.models import Producto
 
 # Create your models here.
 class Usuario(AbstractUser):
@@ -7,6 +8,7 @@ class Usuario(AbstractUser):
     telefono = models.CharField(max_length=20, blank=True, null=True, verbose_name="Teléfono")
     postal = models.CharField(max_length=10, blank=True, null=True, verbose_name="Código Postal")
     direccion = models.CharField(max_length=255, blank=True, null=True, verbose_name="Dirección de Envío")
+    favoritos = models.ManyToManyField(Producto, blank=True, related_name="usuarios_que_les_gusta")
     
     groups = models.ManyToManyField(
         Group,
