@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Producto
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def tienda(request):
@@ -27,3 +28,15 @@ def producto(request, pk):
     }
 
     return render(request, 'tienda/producto.html', context)
+
+@login_required
+def toggle_favorito(request, producto_id):
+    producto = get_object_or_404(Producto, id=producto_id)
+    usuario = request.user
+
+    if producto in usuario.favoritos.all():
+        usuario.favoritos.remove(producto)
+    else:
+        usuario.favoritos.add(producto)
+
+    return redirect('tienda')

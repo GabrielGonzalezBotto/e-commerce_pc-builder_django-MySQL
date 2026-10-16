@@ -126,11 +126,15 @@
                 {% else %}
                     <img class="card-prod-img" src="{% static 'img/favicon.jpg'%}" alt="sin imagen">
                 {% endif %}
-
+        
                 <h3>{{ prod.nombre }}</h3>
                 <div class="card-icon bg-body bg-text">
-                    <a href="#" style="color: inherit; text-decoration: none;">
-                        <i class="fa-regular fa-heart"></i>
+                    <a href="{% url 'toggle_favorito' prod.id %}" style="color: inherit; text-decoration: none;">
+                        {% if prod in user.favoritos.all %}
+                            <i class="fa-solid fa-heart" style="color: #E67E22;"></i>
+                        {% else %}
+                            <i class="fa-regular fa-heart"></i>
+                        {% endif %}
                     </a>
                 </div>
                 <div class="rating">

@@ -101,9 +101,18 @@
                 <h2 class="section-title"><i class="fa-solid fa-heart"></i> Mis Compenentes favoritos</h2>
                 <div class="title-line" style="margin: 1rem 0 2rem 0;"></div>
 
-                <div class="empty-perfil-state">
-                    <i class="fa-regular fa-heart"></i>
-                    <p>Tu lista de deseos está vacía. ¡Dale amor a los componentes que te gusten para guardarlos acá!</p>
+                <div class="info-grid">
+                    {%  for prod in user.favoritos.all %}
+                        <div style="border: 1px solid var(--color-acento); padding: 1rem; border-radius: 12px; display: flex; justify-content: space-between; align-items: center;">
+                            <span><b>{{ prod.nombre }} - {{prod.categoria}}</b> - ${{ prod.precio|floatformat:3 }}</span>
+                            <a href="{% url 'toggle_favorito' prod.id %}" style="color: var(--color-acento); text-decoration: none;"><i class="fa-solid fa-trash"></i></a>
+                        </div>
+                    {% empty %}
+                        <div class="empty-perfil-state">
+                            <i class="fa-regular fa-heart"></i>
+                            <p>Tu lista de deseos está vacía. ¡Dale al corazón para guardar los componentes que te gusten, acá!</p>
+                        </div>
+                    {% endfor %}
                 </div>
             </section>
         </main>

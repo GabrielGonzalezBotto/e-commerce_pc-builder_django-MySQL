@@ -35,3 +35,17 @@ function togglePassword(inputId) {
 }
 
 //Marcar producto como favorito
+document.querySelectorAll('.btn-favorito').forEach(icon => {
+    icon.addEventListener('click', function(e) {
+        e.preventDefault(); // Evita que la página salte
+        if (this.classList.contains('fa-regular')) {
+            this.classList.remove('fa-regular');
+            this.classList.add('fa-solid');
+            this.style.color = '#e74c3c'; // Se pinta de rojo Axon
+        } else {
+            this.classList.remove('fa-solid');
+            this.classList.add('fa-regular');
+            this.style.color = ''; // Vuelve al color base
+        }
+    });
+});
