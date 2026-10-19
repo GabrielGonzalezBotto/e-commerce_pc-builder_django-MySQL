@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Producto
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 
 # Create your views here.
 def tienda(request):
@@ -38,5 +39,8 @@ def toggle_favorito(request, producto_id):
         usuario.favoritos.remove(producto)
     else:
         usuario.favoritos.add(producto)
+
+    if request.headers.get('x-request-with') == 'XMLHttpRequest':
+        return JsonResponse({'status':'ok'})
 
     return redirect('tienda')

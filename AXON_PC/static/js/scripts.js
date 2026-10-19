@@ -35,17 +35,34 @@ function togglePassword(inputId) {
 }
 
 //Marcar producto como favorito
-document.querySelectorAll('.btn-favorito').forEach(icon => {
-    icon.addEventListener('click', function(e) {
-        e.preventDefault(); // Evita que la página salte
-        if (this.classList.contains('fa-regular')) {
-            this.classList.remove('fa-regular');
-            this.classList.add('fa-solid');
-            this.style.color = '#e74c3c'; // Se pinta de rojo Axon
-        } else {
-            this.classList.remove('fa-solid');
-            this.classList.add('fa-regular');
-            this.style.color = ''; // Vuelve al color base
-        }
+document.addEventListener('DOMContentLoaded', function() {
+
+    document.querySelectorAll('.btn-favorito-ajax').forEach(boton => {
+        boton.addEventListener('click', function() {
+            const urlFavorito = this.getAttribute('data-url');
+            const icono = this.querySelector('i');
+
+            fetch(urlFavorito, {
+                method: 'GET',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    if (icono.classList.contains('fa-regular')) {
+                        icono.classList.remove('fa-regular');
+                        icono.classList.add('fa-solid');
+                        icono.style.color = '#E67E22';
+                    } else {
+                        icono.classList.remove('fa-solid');
+                        icono.classList.add('fa-regular');
+                        icono.style.color = '#E67E22';
+                    }
+                }
+            })
+            .catch(error => console.error('Error en favoritos:', error));
+        });
     });
-});
+
+})
