@@ -138,14 +138,16 @@
                     </div>
                 </div>
                 <div class="rating">
-                    <ul class="list-star" style="display: inline-flex; list-style: none; gap: 2px;">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
+                    <ul class="list-star" style="display: inline-flex; list-style: none; gap: 2px; color: #f1c40f;">
+                        <!-- Dibujamos las 5 estrellas una por una evaluando el promedio real -->
+                        <li><i class="{% if prod.promedio_estrellas >= 1 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i></li>
+                        <li><i class="{% if prod.promedio_estrellas >= 2 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i></li>
+                        <li><i class="{% if prod.promedio_estrellas >= 3 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i></li>
+                        <li><i class="{% if prod.promedio_estrellas >= 4 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i></li>
+                        <li><i class="{% if prod.promedio_estrellas >= 5 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i></li>
                     </ul>
-                    <span>4/5</span>
+                    <!-- Muestra el número real de promedio (ej: 4/5 o 0/5 si es nuevo) -->
+                    <span>5/5</span>
                 </div>
                 <div class="card-prod-content">
                     <span>categoria: {{prod.categoria.nombre}}</span>

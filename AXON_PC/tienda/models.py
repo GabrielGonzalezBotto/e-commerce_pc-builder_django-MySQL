@@ -17,6 +17,14 @@ class Producto(models.Model):
     descripcion = models.TextField()
     fecha_creacion = models.DateTimeField(auto_now_add=True)
 
+    @property
+    def promedio_estrellas(self):
+        reviews = self.reviews.all()
+        if not reviews:
+            return 0
+        suma_estrellas = sum(reviews.stars for review in reviews)
+        return round(suma_estrellas / len(reviews))
+
     def __str__(self):
         return f"{self.nombre} ({self.categoria.nombre})"
 
@@ -39,6 +47,10 @@ class Review(models.Model):
     comentario = models.TextField()
     stars = models.IntegerField(choices=[(i,i) for i in range(1,6)], default=5)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
+
+    #--- CAMPOS PATRA ADMINISTRADOR ---
+    respuesta = models.TextField(blank=True, null=True, help_text="Respuesta oficial de Axon PC.")
+    fecha_respuesta = models.DateTimeField(blank=True, null=True)
 
 class Meta:
     verbose_name = 'review'

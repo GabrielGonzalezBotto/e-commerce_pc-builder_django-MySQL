@@ -92,58 +92,44 @@
         <div class="title-line"></div>
 
         <!--Formulario para dejar reseña-->
-        <form action="#" class="review-form bg-body bg-text">
+        {% if user.is_authenticated %}
+        <form action="{% url 'producto' producto.id %}" method="POST" class="review-form bg-body bg-text">
+            {% csrf_token %}
             <h4>Dejanos tu opinión:</h4>
+
+            <div class="review-stars">
+                <span class="star-select" data-value="1"><i class="fa-solid fa-star"></i></span>
+                <span class="star-select" data-value="2"><i class="fa-solid fa-star"></i></span>
+                <span class="star-select" data-value="3"><i class="fa-solid fa-star"></i></span>
+                <span class="star-select" data-value="4"><i class="fa-solid fa-star"></i></span>
+                <span class="star-select" data-value="5"><i class="fa-solid fa-star"></i></span>
+                <input type="hidden" name="stars" id="stars_input" value="5"> 
+            </div>
+
             <textarea name="comentario" id="comentario" placeholder="Qué te pareció este producto?..." rows="3" required></textarea>
             <button type="submit" class="btn-submit-review">Enviar Reseña</button>
         </form>
+        {% else %}
+        <p>Para dejar una opinión sobre este componente, por favor <a href="{% url 'login' %}" style="color: var(--color-acento); font-weight: bold;">iniciá sesión</a></p>
+        {% endif %}
 
         <!--Liasta de comentarios-->
         <div class="review-list">
+            {% for r in review %}
             <div class="review-card bg-body bg-text">
                 <div class="review-header">
-                    <strong style="color: var(--color-acento);">Gabriel Gonzalez</strong>
+                    <strong style="color: var(--color-acento);">{{ r.ususario.first_name }} {{ r.ususario.last_name }}</strong>
                     <span class="review-stars">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <small>5/5</small>
+                        <i class="{% if r.stars >= 1 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i>
+                        <i class="{% if r.stars >= 2 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i>
+                        <i class="{% if r.stars >= 3 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i>
+                        <i class="{% if r.stars >= 4 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i>
+                        <i class="{% if r.stars >= 5 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i>
+                        <small>{{ r.stars }}/5</small>
                     </span>
-                    <!-- Acciones del comentario (Editar/Eliminar) -->
-                    <div class="review-actions"> 
-                        <input type="checkbox" class="menu-checkbox" id="menu-prueba">
-                        <label class="menu-label" for="menu-prueba"><i class="fa-solid fa-gear"></i></label>
-                        <div class="dropdown-menu">
-                            <div class="dropdown-item">
-                                <form action="#" method="get">
-                                    {% csrf_token %}
-                                    <button type="submit" class="edit-btn" aria-label="Editar comentario"><i class="fas fa-edit"></i> Editar</button>
-                                </form>
-                                <form action="#" method="get">
-                                    {% csrf_token %} 
-                                    <button type="submit" class="delete-btn" aria-label="Eliminar comentario"><i class="fas fa-trash"></i> Eliminar</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <p class="review-txt">Excelente procesador, levantó vuelo la PC y las temperaturas son bajísimas con un buen cooler.</p>
-            </div>
 
-            <div class="review-card bg-body bg-text">
-                <div class="review-header">
-                    <strong style="color: var(--color-acento);">Gabriel Gonzalez</strong>
-                    <span class="review-stars">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <small>5/5</small>
-                    </span>
                     <!-- Acciones del comentario (Editar/Eliminar) -->
+                    {% if r.ususario == request.user %}
                     <div class="review-actions"> 
                         <input type="checkbox" class="menu-checkbox" id="menu-prueba">
                         <label class="menu-label" for="menu-prueba"><i class="fa-solid fa-gear"></i></label>
@@ -160,9 +146,23 @@
                             </div>
                         </div>
                     </div>
+                    {% endif %}
                 </div>
-                <p class="review-txt">Excelente procesador, levantó vuelo la PC y las temperaturas son bajísimas con un buen cooler.</p>
+                <p class="review-txt">{{ r.comentario }}</p>
             </div>
+            {% empty %}
+            <p style="color: var(--color-text-2);text-align: center;padding: 30px 0;">Este producto todavía no tiene opiniones. ¡Sé el primero!</p>
+            {% endfor %}
+
+            {% if r.respuesta %}
+            <div class="reply-card">
+                <div class="reply-header">
+                    <strong style="color: var(--color-acento);"><i class="fa-solid fa-reply fa-rotate-180"></i> Axon PC</strong>
+                    <small class="text-muted" style="font-size: 0.8rem;">{{ r.fecha_creacion|date:"d/m/Y" }}</small>
+                </div>
+                <p class="reply-txt" style="margin: 0; font-size: 0.95rem; color: var(--color-text-2);">{{ r.respuesta }}</p>
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>

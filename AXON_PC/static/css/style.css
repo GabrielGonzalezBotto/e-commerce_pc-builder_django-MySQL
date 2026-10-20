@@ -1103,6 +1103,7 @@ form button:hover {
 .review-stars i {
     color: var(--color-acento);
     font-size: 0.85rem;
+    cursor: pointer;
 }
 
 .review-stars small {

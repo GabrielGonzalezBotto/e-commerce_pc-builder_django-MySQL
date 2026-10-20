@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Producto
+from .models import Producto, Review
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
@@ -22,6 +22,21 @@ def producto(request, pk):
     especificaciones = producto.especificaciones.all()
     review = producto.reviews.all()
 
+    if request.method == 'POST':
+        if not request.user.is_authenticated:
+            return redirect('login')
+
+        comentario = request.POST.get('comentario')
+        stars = request.POST.get('stars', 5)
+
+        Review.objects.create(
+            producto=producto,
+            ususario=request.user,
+            comentario=comentario,
+            stars=int(stars)
+        )
+        return redirect('producto', pk=producto.pk)
+    
     context = {
         'producto': producto,
         'especificaciones': especificaciones,
