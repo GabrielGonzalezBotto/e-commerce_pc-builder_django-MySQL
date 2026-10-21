@@ -28,13 +28,13 @@
             <div class="producto-rating">
                 <span class="rating-label">Rating:</span>
                 <span class="review-stars">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <small>5/5</small>
-                    </span>
+                        <i class="{% if producto.promedio_estrellas >= 1 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i>
+                        <i class="{% if producto.promedio_estrellas >= 2 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i>
+                        <i class="{% if producto.promedio_estrellas >= 3 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i>
+                        <i class="{% if producto.promedio_estrellas >= 4 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i>
+                        <i class="{% if producto.promedio_estrellas >= 5 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i>
+                        <small>{{ producto.promedio_estrellas }}/5</small>
+                </span>
                 <small class="text-muted">({{ review.count }} reseñas)</small>
             </div>
 
@@ -98,6 +98,7 @@
             <h4>Dejanos tu opinión:</h4>
 
             <div class="review-stars">
+                <h4>¿Cuántas estrellas tiene este producto, según tu criterio?</h4>
                 <span class="star-select" data-value="1"><i class="fa-solid fa-star"></i></span>
                 <span class="star-select" data-value="2"><i class="fa-solid fa-star"></i></span>
                 <span class="star-select" data-value="3"><i class="fa-solid fa-star"></i></span>
@@ -166,5 +167,6 @@
         </div>
     </div>
 </div>
+
 
 {% endblock%}

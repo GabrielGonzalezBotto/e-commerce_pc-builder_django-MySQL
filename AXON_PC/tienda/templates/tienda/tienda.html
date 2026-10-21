@@ -147,7 +147,7 @@
                         <li><i class="{% if prod.promedio_estrellas >= 5 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i></li>
                     </ul>
                     <!-- Muestra el número real de promedio (ej: 4/5 o 0/5 si es nuevo) -->
-                    <span>5/5</span>
+                    <span>{{ prod.promedio_estrellas }}/5</span>
                 </div>
                 <div class="card-prod-content">
                     <span>categoria: {{prod.categoria.nombre}}</span>

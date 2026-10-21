@@ -22,7 +22,7 @@ class Producto(models.Model):
         reviews = self.reviews.all()
         if not reviews:
             return 0
-        suma_estrellas = sum(reviews.stars for review in reviews)
+        suma_estrellas = sum(review.stars for review in reviews)
         return round(suma_estrellas / len(reviews))
 
     def __str__(self):

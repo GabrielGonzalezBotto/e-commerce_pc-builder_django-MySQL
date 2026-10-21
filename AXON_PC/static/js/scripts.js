@@ -66,3 +66,25 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 })
+
+//Rating o Estrellas
+document.addEventListener('DOMContentLoaded', function(){
+    const starSelectors = document.querySelectorAll('.star-select');
+    if (starSelectors.length > 0) {
+        starSelectors.forEach(star => {
+            star.addEventListener('click', function() {
+                const val = this.getAttribute('data-value');
+                document.getElementById('stars_input').value = val;
+
+                starSelectors.forEach(s => {
+                    const icon = s.querySelector('i');
+                    if (s.getAttribute('data-value') <= val) {
+                        icon.classList.replace('fa-regular', 'fa-solid');
+                    } else {
+                        icon.classList.replace('fa-solid', 'fa-regular');
+                    }
+                });
+            });
+        });
+    }
+});
