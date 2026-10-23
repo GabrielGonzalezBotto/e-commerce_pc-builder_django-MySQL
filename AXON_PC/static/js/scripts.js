@@ -36,7 +36,6 @@ function togglePassword(inputId) {
 
 //Marcar producto como favorito
 document.addEventListener('DOMContentLoaded', function() {
-
     document.querySelectorAll('.btn-favorito-ajax').forEach(boton => {
         boton.addEventListener('click', function() {
             const urlFavorito = this.getAttribute('data-url');

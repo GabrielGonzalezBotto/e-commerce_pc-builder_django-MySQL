@@ -74,15 +74,19 @@ def eliminar_review(request, review_id):
 @login_required
 def editar_review(request, review_id):
     review = get_object_or_404(Review, id=review_id)
-    producto_id = review.producto.id
+    producto = review.producto
 
-    if request.method == 'POST' and review.ususario == request.user:
-        comentario_nuevo = request.POST.get('comentario')
-        stars_nuevas = request.POST.get('stars')
+    if request.ususario != request.user:
+        return redirect('producto', pk=producto.id)
 
-        review.comentario = comentario_nuevo
-        if stars_nuevas:
-            review.stars = int(stars_nuevas)
+    if request.method == 'POST':
+        review.comentario = request.POST.get('comentario')
+        review.stars = int(request.POST.get('stars', review.stars))
         review.save()
+        return redirect('producto', pk=producto.id)
 
-    return redirect('producto', pk=producto_id)
+    context = {
+        'review': review,
+        'producto': producto,
+    }
+    return render(request, 'tienda/editar_review.html', context)

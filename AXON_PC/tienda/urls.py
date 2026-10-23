@@ -6,5 +6,5 @@ urlpatterns = [
     path('producto/<int:pk>/', views.producto, name='producto'),
     path('favorito/toggle/<int:producto_id>/', views.toggle_favorito, name='toggle_favorito'),
     path('review/eliminar/<int:review_id>/', views.eliminar_review, name='eliminar_review'),
-    path('review/eliminar/<int:review_id>/', views.editar_review, name='editar_review'),
+    path('review/editar/<int:review_id>/', views.editar_review, name='editar_review'),
 ]

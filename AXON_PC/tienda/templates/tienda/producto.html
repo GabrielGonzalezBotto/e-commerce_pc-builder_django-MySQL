@@ -136,11 +136,11 @@
                         <label class="menu-label" for="menu-prueba"><i class="fa-solid fa-gear"></i></label>
                         <div class="dropdown-menu">
                             <div class="dropdown-item">
-                                <form action="#" method="get">
+                                <form action="{% url 'editar_review' r.id %}" method="get">
                                     {% csrf_token %}
                                     <button type="submit" class="edit-btn" aria-label="Editar comentario"><i class="fas fa-edit"></i> Editar</button>
                                 </form>
-                                <form action="#" method="get">
+                                <form action="{% url 'eliminar_review' r.id %}" method="get">
                                     {% csrf_token %} 
                                     <button type="submit" class="delete-btn" aria-label="Eliminar comentario"><i class="fas fa-trash"></i> Eliminar</button>
                                 </form>
