@@ -132,8 +132,8 @@
                     <!-- Acciones del comentario (Editar/Eliminar) -->
                     {% if r.ususario == request.user %}
                     <div class="review-actions"> 
-                        <input type="checkbox" class="menu-checkbox" id="menu-prueba">
-                        <label class="menu-label" for="menu-prueba"><i class="fa-solid fa-gear"></i></label>
+                        <input type="checkbox" class="menu-checkbox" id="menu-{{ r.id }}">
+                        <label class="menu-label" for="menu-{{ r.id }}"><i class="fa-solid fa-gear"></i></label>
                         <div class="dropdown-menu">
                             <div class="dropdown-item">
                                 <form action="{% url 'editar_review' r.id %}" method="get">

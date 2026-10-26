@@ -1,41 +1,37 @@
 {% extends 'base.html' %}
-{% block title %}The Glitch Zone | Eliminar Comentario{% endblock %}
+{% load static %}
+
+{% block title %}Axon PC - Eliminar Opinión{% endblock %}
 
 {% block content %}
-<div class="content-container" style="display: flex; justify-content: center; align-items: center; min-height: 70vh;">
-    <div class="card-blog" style="max-width: 500px; width: 100%; text-align: center; padding: 30px; border: 2px solid #ff0055; box-shadow: 0 0 15px rgba(255, 0, 85, 0.3); border-radius: 8px; background-color: #121212;">
-        <!-- Un título con onda -->
-        <div style="font-size: 50px; color: #ff0055; margin-bottom: 20px;">
-            <i class="fas fa-exclamation-triangle"></i>
-        </div>
-
-        <h3 style="color: #fff; font-family: 'Inter', sans-serif; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;">
-            ¿Eliminar Comentario?
-        </h3>
+<div class="producto" style="max-width: 600px; margin: 60px auto; padding: 20px;">
+    <div class="producto-reviews bg-body bg-text" style="padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); text-align: center;">
         
-    
-        <p style="color: #ccc; margin-bottom: 20px; font-size: 1.1rem;">
-            ¿Estás seguro de que quieres borrar de forma permanente tu comentario? Esta acción no se puede deshacer.
+        <div style="font-size: 50px; color: #e74c3c; margin-bottom: 20px;">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        
+        <h2>¿Estás seguro de que querés eliminar tu opinión?</h2>
+        <p style="color: var(--color-text-2); margin-top: 10px; margin-bottom: 25px; font-size: 1.05rem;">
+            Esta acción borrará definitivamente tu comentario y tu calificación para 
+            <strong style="color: var(--color-acento);">{{ producto.nombre }}</strong>. No se puede deshacer.
         </p>
 
-        <!-- Caja para que el usuario recuerde qué está borrando -->
-        <div style="background: #111; border: 1px solid #333; padding: 15px; border-radius: 5px; margin-bottom: 30px; text-align: left; font-style: italic; color: #fff;">
-            "{{ comentario.texto }}"
+        <!-- Bloque que muestra la review que está por borrar, como recordatorio -->
+        <div style="background: rgba(0,0,0,0.05); padding: 15px; border-radius: 4px; text-align: left; margin-bottom: 30px; border-left: 3px solid #e74c3c;">
+            <span style="color: #f1c40f;">
+                {% if review.stars >= 1 %}⭐{% endif %}{% if review.stars >= 2 %}⭐{% endif %}{% if review.stars >= 3 %}⭐{% endif %}{% if review.stars >= 4 %}⭐{% endif %}{% if review.stars >= 5 %}⭐{% endif %}
+            </span>
+            <p style="margin: 5px 0 0 0; font-style: italic; color: var(--color-text);">"{{ review.comentario }}"</p>
         </div>
 
-        <!-- El formulario que activa el POST hacia la misma vista -->
-        <form method="POST" style="display: flex; gap: 15px; justify-content: center;">
+        <!-- Formulario que ejecuta la acción por POST seguro -->
+        <form action="{% url 'eliminar_review' review.id %}" method="POST" style="display: flex; gap: 15px; justify-content: center;">
             {% csrf_token %}
-                <!-- El botón que cancela y lo devuelve a salvo al juego -->
-                <a href="{% url 'blog:detalle_juego' id_juego %}" class="btn-edit">
-                    Cancelar
-                </a>
-
-                <!-- El botón que confirma y borra -->
-                <button type="submit" class="btn-edit">
-                    Eliminar
-                </button>
+            <button type="submit" class="btn-submit-review" style="background-color: #e74c3c; padding: 12px 30px;">Sí, eliminar definitivamente</button>
+            <a href="{% url 'producto' producto.id %}" style="display: inline-block; padding: 12px 30px; background-color: #7f8c8d; color: white; text-decoration: none; border-radius: 4px; font-weight: bold;">Cancelar</a>
         </form>
+        
     </div>
 </div>
 {% endblock %}

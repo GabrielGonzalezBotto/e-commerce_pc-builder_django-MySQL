@@ -36,6 +36,7 @@ def producto(request, pk):
             comentario=comentario,
             stars=int(stars)
         )
+        messages.success(request, "¡Tu comentario se publicó con éxito!")
         return redirect('producto', pk=producto.pk)
     
     context = {
@@ -68,6 +69,7 @@ def eliminar_review(request, review_id):
 
     if review.ususario == request.user:
         review.delete()
+        messages.success(request, "Tu opinión fue correctamenete eliminada.")
 
     return redirect('producto', pk=producto_id)
 
@@ -76,13 +78,14 @@ def editar_review(request, review_id):
     review = get_object_or_404(Review, id=review_id)
     producto = review.producto
 
-    if request.ususario != request.user:
+    if review.ususario != request.user:
         return redirect('producto', pk=producto.id)
 
     if request.method == 'POST':
         review.comentario = request.POST.get('comentario')
         review.stars = int(request.POST.get('stars', review.stars))
         review.save()
+        messages.succes(request, "¡Tu comentario se editó con éxito!")
         return redirect('producto', pk=producto.id)
 
     context = {
