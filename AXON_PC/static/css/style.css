@@ -1196,6 +1196,15 @@ form button:hover {
     color: #ff0055;
 }
 
+/*====== ELIMINAR COMENTARIO =======*/
+
+.producto-reviews{
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, .15);
+    text-align: center;
+}
+
 /*======== REGISTO/LOGIN ========*/
 
 .login-container {
@@ -1507,6 +1516,7 @@ form button:hover {
     font-style: italic;
     font-size: 1rem;
 }
+
 /*======= FOOTER ======*/
 
 .footer {

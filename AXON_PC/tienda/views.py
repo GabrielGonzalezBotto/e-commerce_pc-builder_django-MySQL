@@ -65,13 +65,24 @@ def toggle_favorito(request, producto_id):
 @login_required
 def eliminar_review(request, review_id):
     review = get_object_or_404(Review, id=review_id)
-    producto_id = review.producto.id
+    producto = review.producto
+    
+    # SEGURIDAD: Validamos si el usuario es el dueño real
+    if review.ususario != request.user: # Ajustá a 'usuario' si quitaste la S
+        return redirect('producto', pk=producto.id)
 
-    if review.ususario == request.user:
+    if request.method == 'POST':
+        # Si confirma mediante el formulario POST, borramos
         review.delete()
-        messages.success(request, "Tu opinión fue correctamenete eliminada.")
+        messages.success(request, "Tu opinión fue eliminada correctamente.")
+        return redirect('producto', pk=producto.id)
 
-    return redirect('producto', pk=producto_id)
+    # Si entra por primera vez (GET), mostramos la página de confirmación
+    context = {
+        'review': review,
+        'producto': producto,
+    }
+    return render(request, 'tienda/eliminar_review.html', context)
 
 @login_required
 def editar_review(request, review_id):
@@ -85,7 +96,7 @@ def editar_review(request, review_id):
         review.comentario = request.POST.get('comentario')
         review.stars = int(request.POST.get('stars', review.stars))
         review.save()
-        messages.succes(request, "¡Tu comentario se editó con éxito!")
+        messages.success(request, "¡Tu comentario se editó con éxito!")
         return redirect('producto', pk=producto.id)
 
     context = {
