@@ -1113,9 +1113,28 @@ form button:hover {
 }
 
 .review-txt {
+    text-align: left;
+    margin-top: 10px;
     color: var(--color-text-2);
     font-weight: 500;
 }
+
+/*.reply-card {
+    margin-left: 30px;
+    margin-top: 12px;
+    padding: 12px;
+    border-left: 3px solid var(--color-acento);
+    background-color: rgba(255,255,255,0.03);
+    border-radius: 4px;
+    text-align: left;
+}
+
+.reply-header {
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}*/
 
 .review-actions {
     display: flex;

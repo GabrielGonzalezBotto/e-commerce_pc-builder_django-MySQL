@@ -42,16 +42,23 @@
 
             <!--Opcoiones de compra y carrito-->
             <div class="producto-compra">
-                <div class="cantidad-container">
-                    <label for="cantidad">Cantidad</label>
-                    <input type="number" id="cantidad" name="cantidad" value="1" min="1" max="10">
-                    <span>stock: {{ producto.stock }}</span>
-                </div>
+                {% if producto.stock > 0 %}
+                    <div class="cantidad-container">
+                        <label for="cantidad">Cantidad</label>
+                        <input type="number" id="cantidad" name="cantidad" value="1" min="1" max="10">
+                        <span>stock: {{ producto.stock }}</span>
+                    </div>
 
-                <div class="producto-buttons">
-                    <button class="btn-add-cart">Añadir al carrito <i class="fa-solid fa-cart-plus"></i></button>
-                    <button class="btn-buy-now">Comprar ahora</button>
-                </div>
+                    <div class="producto-buttons">
+                        <button class="btn-add-cart">Añadir al carrito <i class="fa-solid fa-cart-plus"></i></button>
+                        <button class="btn-buy-now">Comprar ahora</button>
+                    </div>
+                {% else %}
+                    <div class="sin-stock-container">
+                        <strong style="color: #e74c3c;"><i class="fa-solid fa-boxes-empty"></i> Stock Agotado</strong>
+                        <p style="margin: 5px 0 0 0; font-size: 0.9rem; color: var(--color-text-2);">Próximamente habrá nuevo ingreso de este componente. ¡Dejalo en tus favoritos!</p>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -116,20 +123,20 @@
 
         <!--Liasta de comentarios-->
         <div class="review-list">
-            {% for r in review %}
-            <div class="review-card bg-body bg-text">
-                <div class="review-header">
-                    <strong style="color: var(--color-acento);">{{ r.ususario.first_name }} {{ r.ususario.last_name }}</strong>
-                    <span class="review-stars">
-                        <i class="{% if r.stars >= 1 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i>
-                        <i class="{% if r.stars >= 2 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i>
-                        <i class="{% if r.stars >= 3 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i>
-                        <i class="{% if r.stars >= 4 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i>
-                        <i class="{% if r.stars >= 5 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i>
-                        <small>{{ r.stars }}/5</small>
-                    </span>
+    {% for r in review %}
+    <div class="review-card bg-body bg-text" style="margin-bottom: 20px;">
+        <div class="review-header">
+            <strong style="color: var(--color-acento);">{{ r.ususario.first_name }} {{ r.ususario.last_name }}</strong>
+            <span class="review-stars" style="color: #f1c40f;">
+                <i class="{% if r.stars >= 1 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i>
+                <i class="{% if r.stars >= 2 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i>
+                <i class="{% if r.stars >= 3 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i>
+                <i class="{% if r.stars >= 4 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i>
+                <i class="{% if r.stars >= 5 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i>
+                <small style="color: var(--color-text); margin-left: 5px;">{{ r.stars }}/5</small>
+            </span>
 
-                    <!-- Acciones del comentario (Editar/Eliminar) -->
+            <!-- Acciones del comentario (Editar/Eliminar) -->
                     {% if r.ususario == request.user %}
                     <div class="review-actions"> 
                         <input type="checkbox" class="menu-checkbox" id="menu-{{ r.id }}">
@@ -148,25 +155,28 @@
                         </div>
                     </div>
                     {% endif %}
-                </div>
-                <p class="review-txt">{{ r.comentario }}</p>
-            </div>
-            {% empty %}
-            <p style="color: var(--color-text-2);text-align: center;padding: 30px 0;">Este producto todavía no tiene opiniones. ¡Sé el primero!</p>
-            {% endfor %}
-
-            {% if r.respuesta %}
-            <div class="reply-card">
-                <div class="reply-header">
-                    <strong style="color: var(--color-acento);"><i class="fa-solid fa-reply fa-rotate-180"></i> Axon PC</strong>
-                    <small class="text-muted" style="font-size: 0.8rem;">{{ r.fecha_creacion|date:"d/m/Y" }}</small>
-                </div>
-                <p class="reply-txt" style="margin: 0; font-size: 0.95rem; color: var(--color-text-2);">{{ r.respuesta }}</p>
-            </div>
-            {% endif %}
         </div>
+        
+        <!-- Cuerpo del comentario (Alineado a la izquierda por defecto) -->
+        <p class="review-txt" style="text-align: left; margin-top: 10px;">{{ r.comentario }}</p>
+
+        <!-- RESPUESTA DEL VENDEDOR: Ahora se renderiza CORRECTAMENTE adentro de la tarjeta dueña del comentario -->
+        {% if r.respuesta %}
+        <div class="reply-card" style="margin-left: 30px; margin-top: 12px; padding: 12px; border-left: 3px solid var(--color-acento); background-color: rgba(255,255,255,0.03); border-radius: 4px; text-align: left;">
+            <div class="reply-header" style="margin-bottom: 5px; display: flex; justify-content: space-between; align-items: center;">
+                <strong style="color: var(--color-acento);"><i class="fa-solid fa-reply fa-rotate-180"></i> Axon PC (Vendedor)</strong>
+                <small class="text-muted" style="font-size: 0.8rem;">{{ r.fecha_creacion|date:"d/m/Y" }}</small>
+            </div>
+            <p class="reply-txt" style="margin: 0; font-size: 0.95rem; color: var(--color-text-2);">{{ r.respuesta }}</p>
+        </div>
+        {% endif %}
+    </div>
+    {% empty %}
+    <p style="color: var(--color-text-2); text-align: center; padding: 30px 0;">Este producto todavía no tiene opiniones. ¡Sé el primero!</p>
+    {% endfor %}
+</div>
     </div>
 </div>
 
 
-{% endblock%}
+{% endblock %}
