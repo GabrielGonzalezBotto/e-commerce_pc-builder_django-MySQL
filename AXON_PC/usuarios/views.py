@@ -3,6 +3,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import RegistroForm, LoginForm
 from django.contrib import messages
+from django.core.paginator import Paginator
 
 # Create your views here.
 
@@ -41,7 +42,13 @@ def logout_view(request):
 #ACCEDER A PERFIL LOGUEADO
 @login_required
 def perfil_view(request):
+    favoritos_list = request.user.favoritos.all().prefetch_related('reviews').order_by('id')
+    paginator = Paginator(favoritos_list, 2)
+    page_number = request.GET.get('page')
+    favoritos_paginados = paginator.get_page(page_number)
+
     context = {
-        'user': request.user
+        'user': request.user,
+        'favoritos': favoritos_paginados,
     }
     return render(request, 'usuarios/perfil.html', context)
