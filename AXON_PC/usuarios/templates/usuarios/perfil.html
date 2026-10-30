@@ -98,37 +98,38 @@
 
             <!--FAVORITOS-->
             <section id="mis-favoritos" class="content-card bg-body bg-text" style="margin-top: 2rem;">
-                <h2 class="section-title"><i class="fa-solid fa-heart"></i> Mis Compenentes favoritos</h2>
+                <h2 class="section-title"><i class="fa-solid fa-heart"></i> Mis Componentes favoritos</h2>
                 <div class="title-line" style="margin: 1rem 0 2rem 0;"></div>
 
-                <div class="grid-content-ven" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 40px; width: 100%;">
+                <!-- Reutilizamos tu grilla de la tienda -->
+                <div class="grid-container-ven" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px;">
                     {% for prod in favoritos %}
                     <div class="card-prod">
                         {% if prod.imagen %}
-                            <img src="{{ prod.imagen.url }}" alt="{{ prod.nombre }}" class="card-prod-img">
+                            <img class="card-prod-img" src="{{ prod.imagen.url }}" alt="{{ prod.nombre }}">
                         {% else %}
                             <img class="card-prod-img" src="{% static 'img/favicon.jpg' %}" alt="sin imagen">
                         {% endif %}
-
+                
                         <h3>{{ prod.nombre }}</h3>
-
-                        <!-- BOTON PARA REMOVER DE FAVORITOS -->
+                        
+                        <!-- El botón para quitarlo de favoritos -->
                         <div class="card-icon bg-body bg-text" style="cursor: pointer;">
-                            <a href="{% url 'toggle_favorito' prod.id %}" style="color: var(--color-acento); text-decoration: none;">
+                            <a href="{% url 'toggle_favorito' prod.id %}" style="color: #E67E22; text-decoration: none;">
                                 <i class="fa-solid fa-heart"></i>
                             </a>
                         </div>
 
-                        <!--RATING-->
-                        <div class="producto-rating">
-                            <ul class="review-stars" style="display: inline-flex; list-style: none; gap: 2px; color: #f1c40f; padding: 0;"> 
-                                <i class="{% if prod.promedio_estrellas >= 1 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i>
-                                <i class="{% if prod.promedio_estrellas >= 2 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i>
-                                <i class="{% if prod.promedio_estrellas >= 3 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i>
-                                <i class="{% if prod.promedio_estrellas >= 4 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i>
-                                <i class="{% if prod.promedio_estrellas >= 5 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i>
-                                <span style="font-size: 0.9rem; margin-left: 5px;">{{ prod.promedio_estrellas }}/5</span>
+                        <!-- El sistema de rating que ya habías pulido -->
+                        <div class="rating">
+                            <ul class="list-star" style="display: inline-flex; list-style: none; gap: 2px; color: #f1c40f; padding: 0;">
+                                <li><i class="{% if prod.promedio_estrellas >= 1 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i></li>
+                                <li><i class="{% if prod.promedio_estrellas >= 2 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i></li>
+                                <li><i class="{% if prod.promedio_estrellas >= 3 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i></li>
+                                <li><i class="{% if prod.promedio_estrellas >= 4 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i></li>
+                                <li><i class="{% if prod.promedio_estrellas >= 5 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i></li>
                             </ul>
+                            <span style="font-size: 0.9rem; margin-left: 5px;">{{ prod.promedio_estrellas }}/5</span>
                         </div>
 
                         <div class="card-prod-content">
@@ -136,36 +137,36 @@
                             <br>
                             <span>Precio: <b>${{ prod.precio|floatformat:2 }} ARS</b></span>
                             <div class="buttons">
-                                <a class="card-prod-btn" href="#">Añadir</a>
-                                <a class="card-prod-btn" href="{% url 'producto' prod.id %}">Ver</a>
+                                <a class="card-prod-btn" href="#">añadir</a>
+                                <a class="card-prod-btn" href="{% url 'producto' prod.id %}">ver</a>
                             </div>
                         </div>
                     </div>
                     {% empty %}
                         <div class="empty-perfil-state" style="grid-column: 1 / -1; text-align: center; padding: 40px 0;">
                             <i class="fa-regular fa-heart" style="font-size: 40px; color: var(--color-text-2);"></i>
-                            <p style="margin-top: 10px;">Tu lista de favoritos está vacía. ¡Explorá la tienda y dale al corazón para guardar tus componentes favoritos en esta sección!</p>
-                            <a href="{% url 'tienda' %}" class="btn-perfil-action" style="margin-top: 1rem; display: inline-block;">Ir a la Tienda</a>
+                            <p style="margin-top: 10px;">Tu lista de deseos está vacía. ¡Explorá la tienda y dale al corazón para guardar hardware acá!</p>
+                            <a href="{% url 'tienda' %}" class="btn-perfil-action" style="margin-top: 1rem; display: inline-block;">Ir a la tienda</a>
                         </div>
                     {% endfor %}
                 </div>
 
-                <!-- PAGINACION DE FAVORITOS EN PERFIL -->
-                    {% if favoritos.has_other_pages %}
-                    <div class="paginacion" style="display: flex; justify-content: center; gap: 10px; margin-top: 30px;">
-                        {% if favoritos.has_previous %}
-                            <a href="?page={{ favoritos.previous_page_number }}#mis-favoritos" style="padding: 8px 12px; background: var(--color-bg-2); border: 1px solid var(--color-linea); color: var(--color-text); text-decoration: none; border-radius: 4px;">&laquo; anterior</a>
-                        {% endif %}
-
-                        <span style="padding: 8px 12px; font-weight: bold; color: var(--color-acento);">
-                            Página {{ favoritos.numbre }} de {{ favoritos.paginator.num_pages }}
-                        </span>
-
-                        {% if favoritos.has_next %}
-                            <a href="?page={{ favoritos.next_page_number }}#mis-favoritos" style="padding: 8px 12px; background: var(--color-bg-2); border: 1px solid var(--color-linea); color: var(--color-text); text-decoration: none; border-radius: 4px;">Siguiente &laquo;</a>
-                        {% endif %}
-                    </div>
+                <!-- BLOQUE DE PAGINACIÓN REUTILIZADO -->
+                {% if favoritos.has_other_pages %}
+                <div class="paginacion" style="display: flex; justify-content: center; gap: 10px; margin-top: 30px;">
+                    {% if favoritos.has_previous %}
+                        <a href="?page={{ favoritos.previous_page_number }}#mis-favoritos" style="padding: 8px 12px; background: var(--color-bg-2); border: 1px solid var(--color-linea); color: var(--color-text); text-decoration: none; border-radius: 4px;">&laquo; Anterior</a>
                     {% endif %}
+
+                    <span style="padding: 8px 12px; font-weight: bold; color: var(--color-acento);">
+                        Página {{ favoritos.number }} de {{ favoritos.paginator.num_pages }}
+                    </span>
+
+                    {% if favoritos.has_next %}
+                        <a href="?page={{ favoritos.next_page_number }}#mis-favoritos" style="padding: 8px 12px; background: var(--color-bg-2); border: 1px solid var(--color-linea); color: var(--color-text); text-decoration: none; border-radius: 4px;">Siguiente &raquo;</a>
+                    {% endif %}
+                </div>
+                {% endif %}
             </section>
         </main>
     </div>
