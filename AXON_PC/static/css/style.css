@@ -166,8 +166,12 @@ body {
     /*width: clamp(18px, 2vw, 24px);
     height: clamp(18px, 2vw, 24px);*/
     color: var(--color-acento);
-    font-size: 1rem;
+    /*font-size: 1rem;*/
     /*opacity: 0.8;*/
+}
+
+.search i:hover {
+    color: var(--color-fondo);
 }
 
 /*------ BOTON INICIAR SESION ------*/

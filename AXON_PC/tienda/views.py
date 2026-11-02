@@ -7,13 +7,18 @@ from django.contrib import messages
 
 # Create your views here.
 def tienda(request):
-    productos = Producto.objects.all().order_by('id')
-    paginator = Paginator(productos, 1)
+    categoria_nombre = request.GET.get('categoria')
+    productos = Producto.objects.all().prefetch_related('reviews').order_by('id')
+    if categoria_nombre:
+        productos = productos.filter(categoria__nombre__iexact=categoria_nombre)
+
+    paginator = Paginator(productos, 8)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
     context = {
         'productos': page_obj,
+        'categoria_actual': categoria_nombre,
     }
     
     return render(request, 'tienda/tienda.html', context)

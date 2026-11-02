@@ -18,85 +18,85 @@
 
     <div class="grid-container-cat">
         
-        <a href="">
-            <div class="box-cat">
+        <a href="?categoria=procesador">
+            <div class="box-cat {% if categoria_actual == 'procesador' %}active-cat{% endif %}">
                 <img class="icon-cat" src="{% static 'img/CPU.png'%}" alt="Procesador">
                 <h3>procesador</h3>
             </div>
         </a>
         
 
-        <a href="#">
-            <div class="box-cat">
+        <a href="?categoria=placa madre">
+            <div class="box-cat {% if categoria_actal == 'placa_madre' %}active-cat{% endif %}">
                 <img class="icon-cat" src="{% static 'img/placa-madre.png'%}" alt="Placa Madre">
                 <h3>placa madre</h3>
             </div>
         </a>
 
-        <a href="">
-            <div class="box-cat">
+        <a href="?caregoria=memoria ram">
+            <div class="box-cat {% if categoria_actual == 'memoria_ram' %}active-cat{% endif %}">
                 <img class="icon-cat" src="{% static 'img/RAM.png'%}" alt="Memoria RAM">
                 <h3>memoria ram</h3>
             </div>
         </a>
         
-        <a href="">
-            <div class="box-cat">
+        <a href="?categoria=tarjeta grafica">
+            <div class="box-cat {% if categoria_actual == 'tarjeta_grafica' %}active-cat{% endif %}">
                 <img class="icon-cat" src="{% static 'img/GPU.png'%}" alt="Tarjeta Gráfica">
                 <h3>tarjeta grafica</h3>
             </div>
         </a>
         
-        <a href="">
-            <div class="box-cat">
+        <a href="?categoria=almacenamiento">
+            <div class="box-cat {% if categoria_actual == 'almacenamiento' % }">
                 <img class="icon-cat" src="{% static 'img/SSD.png'%}" alt="Almecenamineto">
                 <h3>almacenamiento</h3>
             </div>
         </a>
         
-        <a href="">
-            <div class="box-cat">
+        <a href="?categoria=disco duro">
+            <div class="box-cat {% if categoria_actual == 'disco_duro'%}active-cat{% endif %}">
                 <img class="icon-cat" src="{% static 'img/HDD.png'%}" alt="Discp Duro">
                 <h3>Disco Duro</h3>
             </div>
         </a>
         
-        <a href="">
-            <div class="box-cat">
+        <a href="?categoria=fuente">
+            <div class="box-cat {% if categoria_actual == 'fuente' %}active-cat{% endif %}">
                 <img class="icon-cat" src="{% static 'img/fuente.png'%}" alt="Fuente">
                 <h3>fuente</h3>
             </div>
         </a>
         
-        <a href="">
-            <div class="box-cat">
+        <a href="?categoria=cooler">
+            <div class="box-cat {% if categoria_actual == 'cooler' %}active-cat{% endif %}">
                 <img class="icon-cat" src="{% static 'img/cooler.png'%}" alt="Refrigeración">
                 <h3>cooler</h3>
             </div>
         </a>
 
-        <a href="">
-            <div class="box-cat">
+        <a href="?categoria=gabinete">
+            <div class="box-cat {% if categoria_actual == 'gabinete' %}active-cat{% endif %}">
                 <img class="icon-cat" src="{% static 'img/gabinete.png'%}" alt="Gabinete">
                 <h3>gabinete</h3>
             </div>
         </a>
 
-        <a href="">
-            <div class="box-cat">
+        <a href="?categoria=pantallas">
+            <div class="box-cat {% if categoria_actual == 'pantallas' %}active-cat{% endif %}">
                 <img class="icon-cat" src="{% static 'img/pantalla.png'%}" alt="Pantallas">
                 <h3>pantallas</h3>
             </div>
         </a>
         
-        <a href="">
-            <div class="box-cat">
+        <a href="?categoria=accesorios">
+            <div class="box-cat {% if categoria_actual == 'accesorios' %}active-cat{% endif %}">
                 <img class="icon-cat" src="{% static 'img/accesorios.png'%}" alt="Preféricos">
                 <h3>accesorios</h3>
             </div>
         </a>
 
-        <a href="">
+        <a href="{% url 'tienda' %}">
             <div class="box-cat">
                 <img class="icon-cat" src="{% static 'img/tienda.png'%}" alt="Tienda">
                 <h3>tienda</h3>
