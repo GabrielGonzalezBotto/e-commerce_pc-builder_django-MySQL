@@ -17,6 +17,12 @@ class Producto(models.Model):
     descripcion = models.TextField()
     fecha_creacion = models.DateTimeField(auto_now_add=True)
 
+    #Campos para la compatibilidad de componentes de hardware
+    socket = models.CharField(max_length=50, blank=True, null=True)
+    tipo_memoria = models.CharField(max_length=50, blank=True, null=True)
+    watts = models.IntegerField(blank=True, null=True)
+    factor_forma = models.CharField(max_length=50, blank=True, null=True)
+
     @property
     def promedio_estrellas(self):
         reviews = self.reviews.all()
