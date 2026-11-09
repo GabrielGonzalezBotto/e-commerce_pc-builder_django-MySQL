@@ -39,15 +39,23 @@ def asistente_armado(request):
         paso_actual = 'tarjeta_grafica'
         productos_filtrados = Producto.objects.filter(categoria__nombre__iexact='tarjeta grafica')
 
+    titulos = {
+        'procesador': 'Procesador',
+        'placa_madre': 'Placa Madre',
+        'memoria_ram': 'Memoria RAM',
+        'tarjeta_grafica': 'Tarjeta Gráfica'
+    }
+
     context = {
         'paso_actual': paso_actual,
+        'paso_titulo': titulos.get(paso_actual, paso_actual), # <-- NUEVA VARIABLE LIMPIA
         'productos': productos_filtrados,
         'cpu_elegido': Producto.objects.filter(id=armado['procesador']).first(),
         'mother_elegida': Producto.objects.filter(id=armado['placa_madre']).first(),
         'ram_elegida': Producto.objects.filter(id=armado['memoria_ram']).first(),
         'gpu_elegida': Producto.objects.filter(id=armado['tarjeta_grafica']).first(),
     }
-
+    
     return render(request, 'armado/asistente.html', context)
 
 def seleccionar_componente(request, producto_id):

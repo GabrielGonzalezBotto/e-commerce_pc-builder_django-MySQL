@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Axon PC - Asistente de compatibilidad{% endblock %}
+
+{% block content %}
+<div class="asistente">
+
+    <div class="asistente-main">
+        <div class="cat-title" style="margin-bottom: 20px;">
+            <h1 class="main-title" style="font-size: 2rem; text-transform: uppercase;">
+                Paso Actual: <span style="color: var(--color-acento);">Seleccionar {{ paso_titulo }}</span>
+            </h1>
+            <div class="title-line"></div>
+        </div>
+
+        <p style="color: var(--color-text-2);margin-bottom: 30px;">
+            El asistente filtró automáticamente los componentes para garantizar compatibilidad técnica al 100%.
+        </p>
+
+        <!--GRILLA DE PRODUCTOS COMPATIBLES-->
+        <div class="grid-container-ven">
+            {% for prod in productos %}
+            <div class="card-prod">
+                {% if prod.imagen %}
+                    <img src="{{ prod.imagen.url }}" alt="{{ pord.nombre }}" class="card-prod-img">
+                {% else %}
+                    <img src="{% static 'img/favicon.jpg' %}" alt="sin imagen" class="card-prod-img">
+                {% endif %}
+
+                <h3>{{ prod.nombre }}</h3>
+
+                <!--ESPECIFICACIONES RAPIDAS, SI EXISTEN(Socket, RAM, ETC)-->
+                <div class="spec-previews">
+                    {% if prod.socket %}<span>Socket: <b>{{ prod.socket }}</b></span><br>{% endif %}
+                    {% if prod.tipo_memoria %}<span>Memoria: <b>{{ prod.tipo_memoria }}</b></span><br>{% endif %}
+                    {% if prod.factor_forma %}<span>Formato: <b>{{ prod.factor_forma }}</b></span>{% endif %}
+                </div>
+
+                <div class="card-prod-content">
+                    <span>Precio: <b>${{ prod.precio|floatformat:2 }} ARS</b></span>
+                    <div class="buttons">
+                        <a  class="card-prod-btn" href="{% url 'seleccionar_componente' prod.id %}">
+                            Sleleccionar <i class="fa-solid fa-check"></i>
+                        </a>
+                        <a class="card-prod-btn" href="{% url 'producto' prod.id %}">ver</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+                <p class="empty">
+                    No hay stock disponible de componentes compatibles para este paso en este momento.
+                </p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!--COLUMNA DERECHA: RESUMEN DEL PRESUPUESTO-->
+    <aside class="asistente-sidebar bg-body bg-text">
+        <h3>
+            <i class="fa-solid fa-laptop-code" style="color: var(--color-acento);"></i> Tu Configuración
+        </h3>
+        <div class="title-line" style="margin: 10px 0 20px 0;"></div>
+
+        <!--LISTA DE COMPONENTES SELECCIONADOS-->
+        <div class="resumen-lista">
+
+            <!--PROCESADOR-->
+            <div class="resumen-item">
+                <div style="width: 40px; text-align: center; color: {% if cpu_elegido %}var(--color-acento){% else %}var(--color-text-2){% endif %}; font-size: 20px;">
+                    <i class="fa-solid fa-microchip"></i>
+                </div>
+                <div style="flex: 1;">
+                    <small class="text-muted">Procesador</small>
+                    <strong>{{ cpu_elegido.nombre|default:"Pendiente..."}}</strong>
+                </div>
+            </div>
+
+            <!--PLACA MADRE-->
+            <div class="resumen-item">
+                <div style="width: 40px; text-align: center; color: {% if mother_elegida %}var(--color-acento){% else %}var(--color-text-2){% endif %}; font-size: 20px;">
+                    <i class="fa-solid fa-microchip"></i>
+                </div>
+                <div style="flex: 1;">
+                    <small class="text-muted">Placa Madre</small>
+                    <strong>{{ mother_elegida.nombre|default:"Pendiente..."}}</strong>
+                </div>
+            </div>
+
+            <!--MEMORIA RAM-->
+            <div class="resumen-item">
+                <div style="width: 40px; text-align: center; color: {% if ram_elegida %}var(--color-acento){% else %}var(--color-text-2){% endif %}; font-size: 20px;">
+                    <i class="fa-solid fa-microchip"></i>
+                </div>
+                <div style="flex: 1;">
+                    <small class="text-muted">Memoria RAM</small>
+                    <strong>{{ ram_elegida.nombre|default:"Pendiente..."}}</strong>
+                </div>
+            </div>
+
+            <!--TARJETA GRAFICA-->
+            <div class="resumen-item">
+                <div style="width: 40px; text-align: center; color: {% if gpu_elegido %}var(--color-acento){% else %}var(--color-text-2){% endif %}; font-size: 20px;">
+                    <i class="fa-solid fa-microchip"></i>
+                </div>
+                <div style="flex: 1;">
+                    <small class="text-muted">Tarjeta Gráfica</small>
+                    <strong>{{ gpu_elegido.nombre|default:"Pendiente..."}}</strong>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="title-line"></div>
+
+        <!--BOTONES-->
+        <div class="asistente-actions">
+            {% if cpu_elegido or mother_elegida or ram_elegida or gpu_elegida %}
+                <a href="{% url 'reiniciar_armado' %}">
+                    <i class="fa-solid fa-trash-can"></i> Reiniciar PC desde cero
+                </a>
+            {% endif %}
+
+            {% if gpu_elegida %}
+                <a href="#">
+                    <i class="fa-solid fa-cart-plus"></i> Comprar configuración
+                </a>
+            {% endif %}
+        </div>
+    </aside>
+</div>
+{% endblock %}

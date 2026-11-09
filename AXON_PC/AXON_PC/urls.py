@@ -24,7 +24,7 @@ urlpatterns = [
     path('', include('home.urls')),
     path('', include('tienda.urls')),
     path('', include('usuarios.urls')),
-    path('armado/', include('armado.urls')),
+    path('', include('armado.urls')),
 ]
 
 if settings.DEBUG:
