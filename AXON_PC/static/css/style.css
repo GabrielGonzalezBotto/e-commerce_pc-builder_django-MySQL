@@ -1540,6 +1540,75 @@ form button:hover {
     font-size: 1rem;
 }
 
+
+/*======= ASISTENTE DE ARMADO DE PC =========*/
+
+.asistente {
+    max-width: 1400px;
+    margin: 40px 0;
+    padding: 0 20px;
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.asistente-main {
+    flex: 3;
+}
+
+.espec-preview {
+    font-size: 0.80rem;
+    color: var(--color-text-2);
+    padding: 5px 15px;
+    text-align: left;
+}
+
+.resumen-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.resumen-items {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.asistente-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.asistente-actions a {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+    background-color: var(--color-error);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.asistente-actions-cart {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+    background-color: var(--color-exito);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 1rem;
+}
 /*======= FOOTER ======*/
 
 .footer {

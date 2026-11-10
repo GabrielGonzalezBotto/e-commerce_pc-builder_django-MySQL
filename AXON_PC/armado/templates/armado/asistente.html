@@ -8,13 +8,13 @@
 
     <div class="asistente-main">
         <div class="cat-title" style="margin-bottom: 20px;">
-            <h1 class="main-title" style="font-size: 2rem; text-transform: uppercase;">
+            <h1 class="main-title" style="font-size: 2.5rem; text-transform: uppercase;">
                 Paso Actual: <span style="color: var(--color-acento);">Seleccionar {{ paso_titulo }}</span>
             </h1>
             <div class="title-line"></div>
         </div>
 
-        <p style="color: var(--color-text-2);margin-bottom: 30px;">
+        <p style="color: var(--color-text-2);margin-bottom: 10px; padding: 0 90px;">
             El asistente filtró automáticamente los componentes para garantizar compatibilidad técnica al 100%.
         </p>
 
@@ -30,17 +30,32 @@
 
                 <h3>{{ prod.nombre }}</h3>
 
+                <div class="rating">
+                    <ul class="list-star" style="display: inline-flex; list-style: none; gap: 2px; color: #f1c40f;">
+                        <!-- Dibujamos las 5 estrellas una por una evaluando el promedio real -->
+                        <li><i class="{% if prod.promedio_estrellas >= 1 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i></li>
+                        <li><i class="{% if prod.promedio_estrellas >= 2 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i></li>
+                        <li><i class="{% if prod.promedio_estrellas >= 3 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i></li>
+                        <li><i class="{% if prod.promedio_estrellas >= 4 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i></li>
+                        <li><i class="{% if prod.promedio_estrellas >= 5 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i></li>
+                    </ul>
+                    <!-- Muestra el número real de promedio (ej: 4/5 o 0/5 si es nuevo) -->
+                    <span>{{ prod.promedio_estrellas }}/5</span>
+                </div>
+
                 <!--ESPECIFICACIONES RAPIDAS, SI EXISTEN(Socket, RAM, ETC)-->
-                <div class="spec-previews">
+                <!--<div class="espec-preview" style="font-size: 0.85rem; color: var(--color-text-2); padding: 5px 15px; text-align: left;">
                     {% if prod.socket %}<span>Socket: <b>{{ prod.socket }}</b></span><br>{% endif %}
                     {% if prod.tipo_memoria %}<span>Memoria: <b>{{ prod.tipo_memoria }}</b></span><br>{% endif %}
                     {% if prod.factor_forma %}<span>Formato: <b>{{ prod.factor_forma }}</b></span>{% endif %}
-                </div>
+                </div>-->
 
-                <div class="card-prod-content">
+                <div class="card-prod-content" style="margin-top: 10px;">
+                    <span>categoria: {{prod.categoria.nombre}}</span>
+                    <br>
                     <span>Precio: <b>${{ prod.precio|floatformat:2 }} ARS</b></span>
-                    <div class="buttons">
-                        <a  class="card-prod-btn" href="{% url 'seleccionar_componente' prod.id %}">
+                    <div class="buttons" style="margin-top: 15px;">
+                        <a  class="card-prod-btn" href="{% url 'seleccionar_componente' prod.id %}" style="background-color: var(--color-acento); width: 100%; text-align: center;">
                             Sleleccionar <i class="fa-solid fa-check"></i>
                         </a>
                         <a class="card-prod-btn" href="{% url 'producto' prod.id %}">ver</a>
@@ -71,7 +86,7 @@
                     <i class="fa-solid fa-microchip"></i>
                 </div>
                 <div style="flex: 1;">
-                    <small class="text-muted">Procesador</small>
+                    <small class="text-muted" style="display: block; font-size: 0.75rem; text-transform: uppercase;">Procesador</small>
                     <strong>{{ cpu_elegido.nombre|default:"Pendiente..."}}</strong>
                 </div>
             </div>
@@ -79,10 +94,10 @@
             <!--PLACA MADRE-->
             <div class="resumen-item">
                 <div style="width: 40px; text-align: center; color: {% if mother_elegida %}var(--color-acento){% else %}var(--color-text-2){% endif %}; font-size: 20px;">
-                    <i class="fa-solid fa-microchip"></i>
+                    <i class="fa-solid fa-circle-nodes"></i>
                 </div>
                 <div style="flex: 1;">
-                    <small class="text-muted">Placa Madre</small>
+                    <small class="text-muted" style="display: block; font-size: 0.75rem; text-transform: uppercase;">Placa Madre</small>
                     <strong>{{ mother_elegida.nombre|default:"Pendiente..."}}</strong>
                 </div>
             </div>
@@ -90,10 +105,10 @@
             <!--MEMORIA RAM-->
             <div class="resumen-item">
                 <div style="width: 40px; text-align: center; color: {% if ram_elegida %}var(--color-acento){% else %}var(--color-text-2){% endif %}; font-size: 20px;">
-                    <i class="fa-solid fa-microchip"></i>
+                    <i class="fa-solid fa-memory"></i>
                 </div>
                 <div style="flex: 1;">
-                    <small class="text-muted">Memoria RAM</small>
+                    <small class="text-muted" style="display: block; font-size: 0.75rem; text-transform: uppercase;">Memoria RAM</small>
                     <strong>{{ ram_elegida.nombre|default:"Pendiente..."}}</strong>
                 </div>
             </div>
@@ -101,28 +116,28 @@
             <!--TARJETA GRAFICA-->
             <div class="resumen-item">
                 <div style="width: 40px; text-align: center; color: {% if gpu_elegido %}var(--color-acento){% else %}var(--color-text-2){% endif %}; font-size: 20px;">
-                    <i class="fa-solid fa-microchip"></i>
+                    <i class="fa-solid fa-vr-cardboard"></i>
                 </div>
                 <div style="flex: 1;">
-                    <small class="text-muted">Tarjeta Gráfica</small>
+                    <small class="text-muted" style="display: block; font-size: 0.75rem; text-transform: uppercase;">Tarjeta Gráfica</small>
                     <strong>{{ gpu_elegido.nombre|default:"Pendiente..."}}</strong>
                 </div>
             </div>
             
         </div>
 
-        <div class="title-line"></div>
+        <div class="title-line" style="margin: 25px 0 15px 0;"></div>
 
         <!--BOTONES-->
         <div class="asistente-actions">
             {% if cpu_elegido or mother_elegida or ram_elegida or gpu_elegida %}
-                <a href="{% url 'reiniciar_armado' %}">
+                <a href="{% url 'reiniciar_armado' %}" >
                     <i class="fa-solid fa-trash-can"></i> Reiniciar PC desde cero
                 </a>
             {% endif %}
 
             {% if gpu_elegida %}
-                <a href="#">
+                <a href="#" class="asistente-actions-cart" style="display: block; width: 100%; text-align: center; padding: 12px; background-color: #2ec4b6; color: white; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 0.9rem;">
                     <i class="fa-solid fa-cart-plus"></i> Comprar configuración
                 </a>
             {% endif %}

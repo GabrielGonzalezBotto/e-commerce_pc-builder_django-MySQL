@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_list_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from tienda.models import Producto, Categoria
 
 # Create your views here.
@@ -59,7 +59,7 @@ def asistente_armado(request):
     return render(request, 'armado/asistente.html', context)
 
 def seleccionar_componente(request, producto_id):
-    producto = get_list_or_404(Producto, id=producto_id)
+    producto = get_object_or_404(Producto, id=producto_id)
     categoria = producto.categoria.nombre.lower()
 
     armado = request.session.get('carrito_armado', {})
