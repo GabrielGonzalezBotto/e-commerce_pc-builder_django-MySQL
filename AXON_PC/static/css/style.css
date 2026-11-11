@@ -1544,17 +1544,17 @@ form button:hover {
 /*======= ASISTENTE DE ARMADO DE PC =========*/
 
 .asistente {
+    display: flex;
+    flex-direction: column;
     max-width: 1400px;
-    margin: 40px 0;
+    margin: 40px auto;
     padding: 0 20px;
     display: flex;
     gap: 30px;
-    align-items: flex-start;
-    flex-wrap: wrap;
 }
 
 .asistente-main {
-    flex: 3;
+    width: 100%;
 }
 
 .espec-preview {
@@ -1575,6 +1575,11 @@ form button:hover {
     gap: 10px;
     align-items: center;
     font-size: 1rem;
+}
+
+.asistente-sidebar {
+    width: 100%;
+    position: static;
 }
 
 .asistente-actions {
@@ -1707,6 +1712,23 @@ form button:hover {
         align-items: center;
     }
 }*/
+
+@media (min-width: 992px) {
+    .asistente {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .asistente-main {
+        flex: 3;
+    }
+
+    .asistente-sidebar {
+        flex: 1;
+        position: sticky;
+        top: 20px;
+    }
+}
 
 @media(max-width: 900px) {
 

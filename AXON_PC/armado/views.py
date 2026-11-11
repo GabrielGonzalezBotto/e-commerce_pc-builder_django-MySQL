@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from tienda.models import Producto, Categoria
+from django.core.paginator import Paginator
 
 # Create your views here.
 def asistente_armado(request):
@@ -39,6 +40,11 @@ def asistente_armado(request):
         paso_actual = 'tarjeta_grafica'
         productos_filtrados = Producto.objects.filter(categoria__nombre__iexact='tarjeta grafica')
 
+    #Reutiizo la paginacion de mi seccion de tienda
+    paginator = Paginator(productos_filtrados, 1)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)    
+
     titulos = {
         'procesador': 'Procesador',
         'placa_madre': 'Placa Madre',
@@ -54,6 +60,7 @@ def asistente_armado(request):
         'mother_elegida': Producto.objects.filter(id=armado['placa_madre']).first(),
         'ram_elegida': Producto.objects.filter(id=armado['memoria_ram']).first(),
         'gpu_elegida': Producto.objects.filter(id=armado['tarjeta_grafica']).first(),
+        'productos': page_obj,
     }
     
     return render(request, 'armado/asistente.html', context)
