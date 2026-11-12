@@ -14,9 +14,14 @@
             <div class="title-line"></div>
         </div>
 
-        <p style="color: var(--color-text-2);margin-bottom: 10px; padding: 0 90px;">
-            El asistente filtró automáticamente los componentes para garantizar compatibilidad técnica al 100%.
-        </p>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 15px;">
+    <p style="color: var(--color-text-2); margin: 0;">
+        El asistente filtró automáticamente los componentes compatibles.
+    </p>
+    <a href="{% url 'omitir_paso' paso_actual %}" style="padding: 8px 15px; border: 1px solid var(--color-acento); color: var(--color-acento); text-decoration: none; border-radius: 6px; font-size: 0.9rem; font-weight: bold;">
+        Omitir este componente <i class="fa-solid fa-forward"></i>
+    </a>
+</div>
 
         <!--GRILLA DE PRODUCTOS COMPATIBLES-->
         <div class="grid-container-ven">
