@@ -4,116 +4,131 @@
 {% block title %}Axon PC - Asistente de compatibilidad{% endblock %}
 
 {% block content %}
-<div class="asistente">
+<div class="asistente" bg-body bg-text>
 
-    <div class="asistente-main">
-        <div class="cat-title" style="margin-bottom: 20px;">
-            <h1 class="main-title" style="font-size: 2.5rem; text-transform: uppercase;">
+    <div class="cat-title" style="margin-bottom: 20px;"> 
+        <h1 class="main-title" style="font-size: 2rem; text-transform: uppercase;">
+            {% if armado_completo %}
+                <span style="color: var(--color-exito);">{{ paso_titulo }}</span>
+            {% else %}
                 Paso Actual: <span style="color: var(--color-acento);">Seleccionar {{ paso_titulo }}</span>
-            </h1>
-            <div class="title-line"></div>
-        </div>
+            {% endif %}    
+        </h1>
+        <div class="title-line"></div>
+    </div>
 
+    {% if armado_completo %}
+        <div style="text-align: center; padding: 50px 20px; background: rgba(46, 196, 182, 0.1); border: 1px solid var(--color-exito); border-radius: 12px;">
+            <i class="fa-solid fa-circle-check" style="font-size: 50px; color: var(--color-exito); margin-bottom: 15px;"></i>
+            <h2>¡Ya revisaste todos los componentes!</h2>
+            <p style="color: var(--color-text-2); max-width: 500px; margin: 10px auto 25px auto;">
+                Podés revisar tu lista en el panel derecho, hacé click sobre cualquier componente para modificarlo o finalizá tu compra.
+            </p>
+            <a href="{% url 'reiniciar_armado' %}" class="card-prod-btn" style="background-color: var(--color-acento); display: inline-block;">
+                Armar otra PC desde cero
+            </a>
+        </div>
+    {% else %}
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 15px;">
-    <p style="color: var(--color-text-2); margin: 0;">
-        El asistente filtró automáticamente los componentes compatibles.
-    </p>
-    <a href="{% url 'omitir_paso' paso_actual %}" style="padding: 8px 15px; border: 1px solid var(--color-acento); color: var(--color-acento); text-decoration: none; border-radius: 6px; font-size: 0.9rem; font-weight: bold;">
-        Omitir este componente <i class="fa-solid fa-forward"></i>
-    </a>
+            <p style="color: var(--color-text-2); margin: 0;">
+                El asistente filtró automáticamente los componentes compatibles.
+            </p>
+            <a href="{% url 'omitir_paso' paso_actual %}" style="padding: 8px 15px; border: 1px solid var(--color-acento); color: var(--color-acento); text-decoration: none; border-radius: 6px; font-size: 1rem; font-weight: 700;">
+                Omitir este componente <i class="fa-solid fa-forward"></i>
+            </a>
+
+            <!--GRILLA DE PRODUCTOS COMPATIBLES-->
+            <div class="grid-container-ven">
+                {% for prod in productos %}
+                    <div class="card-prod">
+                        {% if prod.imagen %}
+                            <img src="{{ prod.imagen.url }}" alt="{{ pord.nombre }}" class="card-prod-img">
+                        {% else %}
+                            <img src="{% static 'img/favicon.jpg' %}" alt="sin imagen" class="card-prod-img">
+                        {% endif %}
+
+                        <h3>{{ prod.nombre }}</h3>
+
+                        <div class="rating">
+                            <ul class="list-star" style="display: inline-flex; list-style: none; gap: 2px; color: #f1c40f;">
+                            <!-- Dibujamos las 5 estrellas una por una evaluando el promedio real -->
+                                <li><i class="{% if prod.promedio_estrellas >= 1 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i></li>
+                                <li><i class="{% if prod.promedio_estrellas >= 2 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i></li>
+                                <li><i class="{% if prod.promedio_estrellas >= 3 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i></li>
+                                <li><i class="{% if prod.promedio_estrellas >= 4 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i></li>
+                                <li><i class="{% if prod.promedio_estrellas >= 5 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i></li>
+                            </ul>
+                            <!-- Muestra el número real de promedio (ej: 4/5 o 0/5 si es nuevo) -->
+                            <span>{{ prod.promedio_estrellas }}/5</span>
+                        </div>
+
+                        <!--ESPECIFICACIONES RAPIDAS, SI EXISTEN(Socket, RAM, ETC)-->
+                        <div class="espec-preview" style="font-size: 0.85rem; color: var(--color-text-2); padding: 5px 15px; text-align: left;">
+                            {% if prod.socket %}<span>Socket: <b>{{ prod.socket }}</b></span><br>{% endif %}
+                            {% if prod.tipo_memoria %}<span>Memoria: <b>{{ prod.tipo_memoria }}</b></span><br>{% endif %}
+                            {% if prod.factor_forma %}<span>Formato: <b>{{ prod.factor_forma }}</b></span>{% endif %}
+                        </div>
+
+                        <div class="card-prod-content" style="margin-top: 10px;">
+                            <span>categoria: {{prod.categoria.nombre}}</span>
+                            <br>
+                            <span>Precio: <b>${{ prod.precio|floatformat:2 }} ARS</b></span>
+                            <div class="buttons" style="margin-top: 15px;">
+                                <a  class="card-prod-btn" href="{% url 'seleccionar_componente' prod.id %}" style="background-color: var(--color-acento); width: 100%; text-align: center;">
+                                    Sleleccionar
+                                </a>
+                                <a class="card-prod-btn" href="{% url 'producto' prod.id %}">ver</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                        <p class="empty">
+                            No hay stock disponible de componentes compatibles para este paso en este momento.
+                        </p>
+                {% endfor %}
+            </div>
+    {% endif %}
 </div>
 
-        <!--GRILLA DE PRODUCTOS COMPATIBLES-->
-        <div class="grid-container-ven">
-            {% for prod in productos %}
-            <div class="card-prod">
-                {% if prod.imagen %}
-                    <img src="{{ prod.imagen.url }}" alt="{{ pord.nombre }}" class="card-prod-img">
-                {% else %}
-                    <img src="{% static 'img/favicon.jpg' %}" alt="sin imagen" class="card-prod-img">
-                {% endif %}
-
-                <h3>{{ prod.nombre }}</h3>
-
-                <div class="rating">
-                    <ul class="list-star" style="display: inline-flex; list-style: none; gap: 2px; color: #f1c40f;">
-                        <!-- Dibujamos las 5 estrellas una por una evaluando el promedio real -->
-                        <li><i class="{% if prod.promedio_estrellas >= 1 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i></li>
-                        <li><i class="{% if prod.promedio_estrellas >= 2 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i></li>
-                        <li><i class="{% if prod.promedio_estrellas >= 3 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i></li>
-                        <li><i class="{% if prod.promedio_estrellas >= 4 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i></li>
-                        <li><i class="{% if prod.promedio_estrellas >= 5 %}fa-solid{% else %}fa-regular{% endif %} fa-star"></i></li>
-                    </ul>
-                    <!-- Muestra el número real de promedio (ej: 4/5 o 0/5 si es nuevo) -->
-                    <span>{{ prod.promedio_estrellas }}/5</span>
-                </div>
-
-                <!--ESPECIFICACIONES RAPIDAS, SI EXISTEN(Socket, RAM, ETC)-->
-                <div class="espec-preview" style="font-size: 0.85rem; color: var(--color-text-2); padding: 5px 15px; text-align: left;">
-                    {% if prod.socket %}<span>Socket: <b>{{ prod.socket }}</b></span><br>{% endif %}
-                    {% if prod.tipo_memoria %}<span>Memoria: <b>{{ prod.tipo_memoria }}</b></span><br>{% endif %}
-                    {% if prod.factor_forma %}<span>Formato: <b>{{ prod.factor_forma }}</b></span>{% endif %}
-                </div>
-
-                <div class="card-prod-content" style="margin-top: 10px;">
-                    <span>categoria: {{prod.categoria.nombre}}</span>
-                    <br>
-                    <span>Precio: <b>${{ prod.precio|floatformat:2 }} ARS</b></span>
-                    <div class="buttons" style="margin-top: 15px;">
-                        <a  class="card-prod-btn" href="{% url 'seleccionar_componente' prod.id %}" style="background-color: var(--color-acento); width: 100%; text-align: center;">
-                            Sleleccionar
-                        </a>
-                        <a class="card-prod-btn" href="{% url 'producto' prod.id %}">ver</a>
-                    </div>
-                </div>
-            </div>
-            {% empty %}
-                <p class="empty">
-                    No hay stock disponible de componentes compatibles para este paso en este momento.
-                </p>
-            {% endfor %}
-        </div>
-
-
         <!-- PAGINACIÓN CORREGIDA CON ENLACES DE RECUERDO COMPLETOS -->
-<nav aria-label="Paginación" class="pagination" style="margin-top: 30px; margin-bottom: 50px;">
-    <ul class="pagination justify-content-center">
-        {% if productos.has_previous %}
-        <li class="page-item">
-            <a class="page-link" href="?page=1{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orden_fecha %}&orden_fecha={{ request.GET.orden_fecha }}{% endif %}{% if request.GET.orden_comentarios %}&orden_comentarios={{ request.GET.orden_comentarios }}{% endif %}">Primera</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="?page={{ productos.previous_page_number }}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orden_fecha %}&orden_fecha={{ request.GET.orden_fecha }}{% endif %}{% if request.GET.orden_comentarios %}&orden_comentarios={{ request.GET.orden_comentarios }}{% endif %}">Anterior</a>
-        </li>
-        {% else %}
-        <li class="page-item disabled"><span class="page-link">Primera</span></li>
-        <li class="page-item disabled"><span class="page-link">Anterior</span></li>
-        {% endif %}
+    <nav aria-label="Paginación" class="pagination" style="margin-top: 30px; margin-bottom: 50px;">
+        <ul class="pagination justify-content-center">
+            {% if productos.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page=1{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orden_fecha %}&orden_fecha={{ request.GET.orden_fecha }}{% endif %}{% if request.GET.orden_comentarios %}&orden_comentarios={{ request.GET.orden_comentarios }}{% endif %}">Primera</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ productos.previous_page_number }}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orden_fecha %}&orden_fecha={{ request.GET.orden_fecha }}{% endif %}{% if request.GET.orden_comentarios %}&orden_comentarios={{ request.GET.orden_comentarios }}{% endif %}">Anterior</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled"><span class="page-link">Primera</span></li>
+                <li class="page-item disabled"><span class="page-link">Anterior</span></li>
+            {% endif %}
 
-        {% for num in productos.paginator.page_range %}
-        {% if productos.number == num %}
-        <li class="page-item active"><span class="page-link">{{ num }}</span></li>
-        {% elif num > productos.number|add:'-3' and num < productos.number|add:'3' %}
-        <li class="page-item">
-            <a class="page-link" href="?page={{ num }}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orden_fecha %}&orden_fecha={{ request.GET.orden_fecha }}{% endif %}{% if request.GET.orden_comentarios %}&orden_comentarios={{ request.GET.orden_comentarios }}{% endif %}">{{ num }}</a>
-        </li>
-        {% endif %}
-        {% endfor %}
+            {% for num in productos.paginator.page_range %}
+                {% if productos.number == num %}
+                    <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+                {% elif num > productos.number|add:'-3' and num < productos.number|add:'3' %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ num }}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orden_fecha %}&orden_fecha={{ request.GET.orden_fecha }}{% endif %}{% if request.GET.orden_comentarios %}&orden_comentarios={{ request.GET.orden_comentarios }}{% endif %}">{{ num }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
 
-        {% if productos.has_next %}
-        <li class="page-item">
-            <a class="page-link" href="?page={{ productos.next_page_number }}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orden_fecha %}&orden_fecha={{ request.GET.orden_fecha }}{% endif %}{% if request.GET.orden_comentarios %}&orden_comentarios={{ request.GET.orden_comentarios }}{% endif %}">Siguiente</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="?page={{ productos.paginator.num_pages }}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orden_fecha %}&orden_fecha={{ request.GET.orden_fecha }}{% endif %}{% if request.GET.orden_comentarios %}&orden_comentarios={{ request.GET.orden_comentarios }}{% endif %}">Ultima</a>
-        </li>
-        {% else %}
-        <li class="page-item disabled"><span class="page-link">Siguiente</span></li>
-        <li class="page-item disabled"><span class="page-link">Ultima</span></li>
-        {% endif %}
-    </ul>
-</nav>
-    </div>
+            {% if productos.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ productos.next_page_number }}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orden_fecha %}&orden_fecha={{ request.GET.orden_fecha }}{% endif %}{% if request.GET.orden_comentarios %}&orden_comentarios={{ request.GET.orden_comentarios }}{% endif %}">Siguiente</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ productos.paginator.num_pages }}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orden_fecha %}&orden_fecha={{ request.GET.orden_fecha }}{% endif %}{% if request.GET.orden_comentarios %}&orden_comentarios={{ request.GET.orden_comentarios }}{% endif %}">Ultima</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled"><span class="page-link">Siguiente</span></li>
+                <li class="page-item disabled"><span class="page-link">Ultima</span></li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
 
 
     <!--COLUMNA DERECHA: RESUMEN DEL PRESUPUESTO-->
