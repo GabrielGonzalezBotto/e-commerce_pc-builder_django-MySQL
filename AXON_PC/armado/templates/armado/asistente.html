@@ -18,7 +18,7 @@
     </div>
 
     {% if armado_completo %}
-        <div style="text-align: center; padding: 50px 20px; background: rgba(46, 196, 182, 0.1); border: 1px solid var(--color-exito); border-radius: 12px;">
+        <div style="text-align: center; padding: 20px 20px; background: rgba(46, 196, 182, 0.1); border: 1px solid var(--color-exito); border-radius: 12px;">
             <i class="fa-solid fa-circle-check" style="font-size: 50px; color: var(--color-exito); margin-bottom: 15px;"></i>
             <h2>¡Ya revisaste todos los componentes!</h2>
             <p style="color: var(--color-text-2); max-width: 500px; margin: 10px auto 25px auto;">
@@ -88,9 +88,8 @@
                 {% endfor %}
             </div>
     {% endif %}
-</div>
 
-        <!-- PAGINACIÓN CORREGIDA CON ENLACES DE RECUERDO COMPLETOS -->
+    <!-- PAGINACIÓN CORREGIDA CON ENLACES DE RECUERDO COMPLETOS -->
     <nav aria-label="Paginación" class="pagination" style="margin-top: 30px; margin-bottom: 50px;">
         <ul class="pagination justify-content-center">
             {% if productos.has_previous %}
@@ -130,8 +129,7 @@
     </nav>
 </div>
 
-
-    <!--COLUMNA DERECHA: RESUMEN DEL PRESUPUESTO-->
+ <!--COLUMNA DERECHA: RESUMEN DEL PRESUPUESTO-->
     <aside class="asistente-sidebar bg-body bg-text">
         <h3>
             <i class="fa-solid fa-laptop-code" style="color: var(--color-acento);"></i> Tu Configuración
@@ -142,67 +140,83 @@
         <div class="resumen-lista">
 
             <!--PROCESADOR-->
-            <div class="resumen-item">
-                <div style="width: 40px; text-align: center; color: {% if cpu_elegido %}var(--color-acento){% else %}var(--color-text-2){% endif %}; font-size: 20px;">
+            <a href="?paso=procesador" style="text-decoration: none; color: inherit; display: flex; gap: 10px; align-items: center; font-size: 1rem; padding: 8px; border-radius: 6px; transition: background 0.2s;">
+                <div style="width: 40px; text-align: center; font-size: 20px; {% if cpu_elegido %}color: var(--color-acento);{% else %}color: #7f8c8d;{% endif %}">
                     <i class="fa-solid fa-microchip"></i>
                 </div>
                 <div style="flex: 1;">
-                    <small class="text-muted" style="display: block; font-size: 0.75rem; text-transform: uppercase;">Procesador</small>
-                    <strong>{{ cpu_elegido.nombre|default:"Pendiente..."}}</strong>
+                    <small class="text-muted" style="display: block; font-size: 1rem; text-transform: uppercase;">Procesador (Cambiar)</small>
+                    <strong>
+                        {% if cpu_elegido %}{{ cpu_elegido.nombre }}
+                        {% elif armado.procesador == 'omitido' %}<span style="color: var(--color-error); font-style: italic;">Omitido</span>
+                        {% else %}Pendiente...{% endif %}
+                    </strong>
                 </div>
-            </div>
+            </a>
 
             <!--PLACA MADRE-->
-            <div class="resumen-item">
-                <div style="width: 40px; text-align: center; color: {% if mother_elegida %}var(--color-acento){% else %}var(--color-text-2){% endif %}; font-size: 20px;">
+            <a href="?paso=placa_madre" style="text-decoration: none; color: inherit; display: flex; gap: 10px; align-items: center; font-size: 1rem; padding: 8px; border-radius: 6px; transition: background 0.2s;">
+                <div style="width: 40px; text-align: center; font-size: 20px; {% if mother_elegida %}color: var(--color-acento);{% else %}color: #7f8c8d;{% endif %}">
                     <i class="fa-solid fa-circle-nodes"></i>
                 </div>
                 <div style="flex: 1;">
-                    <small class="text-muted" style="display: block; font-size: 0.75rem; text-transform: uppercase;">Placa Madre</small>
-                    <strong>{{ mother_elegida.nombre|default:"Pendiente..."}}</strong>
+                    <small class="text-muted" style="display: block; font-size: 1rem; text-transform: uppercase;">Placa Madre (Cambiar)</small>
+                    <strong>
+                        {% if mother_elegida %}{{ mother_elegida.nombre }}
+                        {% elif armado.placa_madre == 'omitido' %}<span style="color: var(--color-error); font-style: italic;">Omitido</span>
+                        {% else %}Pendiente...{% endif %}
+                    </strong>
                 </div>
-            </div>
+            </a>
 
             <!--MEMORIA RAM-->
-            <div class="resumen-item">
-                <div style="width: 40px; text-align: center; color: {% if ram_elegida %}var(--color-acento){% else %}var(--color-text-2){% endif %}; font-size: 20px;">
+            <a href="?paso=memoria_ram" style="text-decoration: none; color: inherit; display: flex; gap: 10px; align-items: center; font-size: 1rem; padding: 8px; border-radius: 6px; transition: background 0.2s;">
+                <div style="width: 40px; text-align: center; font-size: 20px; {% if ram_elegida %}color: var(--color-acento);{% else %}color: #7f8c8d;{% endif %}">
                     <i class="fa-solid fa-memory"></i>
                 </div>
                 <div style="flex: 1;">
-                    <small class="text-muted" style="display: block; font-size: 0.75rem; text-transform: uppercase;">Memoria RAM</small>
-                    <strong>{{ ram_elegida.nombre|default:"Pendiente..."}}</strong>
+                    <small class="text-muted" style="display: block; font-size: 1rem; text-transform: uppercase;">Memoria RAM (Cambiar)</small>
+                    <strong>
+                        {% if ram_elegida %}{{ ram_elegida.nombre }}
+                        {% elif armado.memoria_ram == 'omitido' %}<span style="color: var(--color-error); font-style: italic;">Omitido</span>
+                        {% else %}Pendiente...{% endif %}
+                    </strong>
                 </div>
-            </div>
+            </a>
 
             <!--TARJETA GRAFICA-->
-            <div class="resumen-item">
-                <div style="width: 40px; text-align: center; color: {% if gpu_elegido %}var(--color-acento){% else %}var(--color-text-2){% endif %}; font-size: 20px;">
+            <a href="?paso=tarjeta_grafica" style="text-decoration: none; color: inherit; display: flex; gap: 10px; align-items: center; font-size: 1rem; padding: 8px; border-radius: 6px; transition: background 0.2s;">
+                <div style="width: 40px; text-align: center; font-size: 20px; {% if gpu_elegida %}color: var(--color-acento);{% else %}color: #7f8c8d;{% endif %}">
                     <i class="fa-solid fa-vr-cardboard"></i>
                 </div>
                 <div style="flex: 1;">
-                    <small class="text-muted" style="display: block; font-size: 0.75rem; text-transform: uppercase;">Tarjeta Gráfica</small>
-                    <strong>{{ gpu_elegido.nombre|default:"Pendiente..."}}</strong>
+                    <small class="text-muted" style="display: block; font-size: 1rem; text-transform: uppercase;">Tarjeta Gráfica (Cambiar)</small>
+                    <strong>
+                        {% if gpu_elegida %}{{ gpu_elegida.nombre }}
+                        {% elif armado.tarjeta_grafica == 'omitido' %}<span style="color: var(--color-error); font-style: italic;">Omitido</span>
+                        {% else %}Pendiente...{% endif %}
+                    </strong>
                 </div>
-            </div>
-            
+            </a>
         </div>
 
         <div class="title-line" style="margin: 25px 0 15px 0;"></div>
 
         <!--BOTONES-->
-        <div class="asistente-actions">
-            {% if cpu_elegido or mother_elegida or ram_elegida or gpu_elegida %}
-                <a href="{% url 'reiniciar_armado' %}" >
+        <div class="asistente-actions" style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px;">
+            {% if tiene_progreso %}
+                <a href="{% url 'reiniciar_armado' %}" style="display: block; width: 100%; text-align: center; padding: 12px; background-color: #e74c3c; color: white; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 0.9rem;">
                     <i class="fa-solid fa-trash-can"></i> Reiniciar PC desde cero
                 </a>
             {% endif %}
 
-            {% if gpu_elegida %}
-                <a href="#" class="asistente-actions-cart" style="display: block; width: 100%; text-align: center; padding: 12px; background-color: #2ec4b6; color: white; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 0.9rem;">
+            {% if tiene_productos_reales %}
+                <a href="#" class="asistente-actions-cart" style="display: block; width: 100%; text-align: center; padding: 12px; background-color: var(--color-acento); color: white; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 0.9rem;">
                     <i class="fa-solid fa-cart-plus"></i> Comprar configuración
                 </a>
             {% endif %}
         </div>
     </aside>
+
 </div>
 {% endblock %}
