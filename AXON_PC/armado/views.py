@@ -65,7 +65,7 @@ def asistente_armado(request):
         productos_filtrados = Producto.objects.filter(categoria__nombre__iexact='tarjetagrafica', stock__gt=0)
 
     #Paginacion reutilizada de tienda,html
-    paginator = Paginator(productos_filtrados, 4)
+    paginator = Paginator(productos_filtrados, 2)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 

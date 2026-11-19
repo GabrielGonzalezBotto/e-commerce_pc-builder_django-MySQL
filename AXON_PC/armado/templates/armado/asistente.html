@@ -19,14 +19,14 @@
     </div>
 
     {% if armado_completo %}
-        <div style= "text-align: center; padding: 20px 20px; background: rgba(46, 196, 182, 0.1); border: 1px solid var(--color-exito); border-radius: 12px;">
+        <div style="text-align: center; padding: 20px 20px; background: rgba(46, 196, 182, 0.1); border: 1px solid var(--color-exito); border-radius: 12px;">
             <i class="fa-solid fa-circle-check" style="font-size: 50px; color: var(--color-exito); margin-bottom: 15px;"></i>
             <h2>¡Ya revisaste todos los componentes!</h2>
             <p style="color: var(--color-text-2); max-width: 500px; margin: 10px auto 25px auto;">
                 Podés revisar tu lista en el panel derecho, hacé click sobre cualquier componente para modificarlo o finalizá tu compra.
             </p>
             <!--BOTONES-->
-            <div class="asistente-actions" style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px;">
+            <div class="asistente-actions" style="width: 50%; position: relative; left: 25%; display: flex; flex-direction: column; gap: 10px; margin-top: 20px;">
                 {% if tiene_progreso %}
                     <a href="{% url 'reiniciar_armado' %}" style="display: block; width: 100%; text-align: center; padding: 12px; background-color: #e74c3c; color: white; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 0.9rem;">
                         <i class="fa-solid fa-trash-can"></i> Reiniciar PC desde cero
@@ -50,7 +50,7 @@
             </a>
 
             <!--GRILLA DE PRODUCTOS COMPATIBLES-->
-            <div class="grid-container-ven">
+            <div class="grid-container-asistente">
                 {% for prod in productos %}
                     <div class="card-prod">
                         {% if prod.imagen %}
