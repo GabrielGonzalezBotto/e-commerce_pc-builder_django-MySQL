@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator
 from tienda.models import Producto
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 ORDEN_PASOS = ['procesador', 'placa_madre', 'memoria_ram', 'tarjeta_grafica']
 
@@ -55,7 +57,7 @@ def asistente_armado(request):
             if mother_elegida and mother_elegida.tipo_memoria:
                 productos_filtrados = Producto.objects.filter(
                     categoria__nombre__iexact='memoria ram',
-                    socket__ieaxact=mother_elegida.tipo_memoria,
+                    socket__iexact=mother_elegida.tipo_memoria,
                     stock__gt=0
                 )
             else:
@@ -139,3 +141,10 @@ def reiniciar_armado(request):
     }
     request.session.modified = True
     return redirect('asistente_armado')
+
+@login_required
+def finalizar_armado(request):
+    armado = request.session.get('carrito_armado', {})
+    print(f"Usuario {request.user.username} finalizó el armado: {armado}")
+    messages.success(request, "¡Configuración gurdada! Iniciando proceso de compra...")
+    return redirect('tienda')

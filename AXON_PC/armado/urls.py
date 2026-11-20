@@ -6,4 +6,5 @@ urlpatterns = [
     path('seleccionar/<int:producto_id>/', views.seleccionar_componente, name='seleccionar_componente'),
     path('omitir/<str:paso>/', views.omitir_paso, name='omitir_paso'),
     path('reiniciar/', views.reiniciar_armado, name='reiniciar_armado'),
+    path('finalizar/', views.finalizar_armado, name='finalizar_armado'),
 ]  

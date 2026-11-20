@@ -34,7 +34,7 @@
                 {% endif %}
 
                 {% if tiene_productos_reales %}
-                    <a href="#" class="asistente-actions-cart" style="display: block; width: 100%; text-align: center; padding: 12px; background-color: var(--color-acento); color: white; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 0.9rem;">
+                    <a href="{% url 'finalizar_armado' %}" class="asistente-actions-cart" style="display: block; width: 100%; text-align: center; padding: 12px; background-color: var(--color-acento); color: white; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 0.9rem;">
                         <i class="fa-solid fa-cart-plus"></i> Comprar configuración
                     </a>
                 {% endif %}
