@@ -218,6 +218,51 @@
                     </strong>
                 </div>
             </a>
+
+            <!--ALMACENAMINETO-->
+            <a href="?paso=almacenamineto" style="text-decoration: none; color: inherit; display: flex; gap: 10px; align-items: center; font-size: 1rem; padding: 8px; border-radius: 6px; transition: background 0.2s;">
+                <div style="width: 40px; text-align: center; font-size: 20px; {% if disco_elegido %}color: var(--color-acento);{% else %}color: #7f8c8d;{% endif %}">
+                    <i class="fa-solid fa-hdd"></i>
+                </div>
+                <div style="flex: 1;">
+                    <small class="text-muted" style="display: block; font-size: 1rem; text-transform: uppercase;">Almacenamiento (Cambiar)</small>
+                    <strong>
+                        {% if disco_elegido %}{{ disco_elegido.nombre }}
+                        {% elif armado.almacenamiento == 'omitido' %}<span style="color: var(--color-error); font-style: italic;">Omitido</span>
+                        {% else %}Pendiente...{% endif %}
+                    </strong>
+                </div>
+            </a>
+
+            <!--GABINETE-->
+            <a href="?paso=gabinete" style="text-decoration: none; color: inherit; display: flex; gap: 10px; align-items: center; font-size: 1rem; padding: 8px; border-radius: 6px; transition: background 0.2s;">
+                <div style="width: 40px; text-align: center; font-size: 20px; {% if gabinete_elegido %}color: var(--color-acento);{% else %}color: #7f8c8d;{% endif %}">
+                    <i class="fa-solid fa-box"></i>
+                </div>
+                <div style="flex: 1;">
+                    <small class="text-muted" style="display: block; font-size: 1rem; text-transform: uppercase;">Gabinete (Cambiar)</small>
+                    <strong>
+                        {% if gabinete_elegido %}{{ gabinete_elegido.nombre }}
+                        {% elif armado.gabinete == 'omitido' %}<span style="color: var(--color-error); font-style: italic;">Omitido</span>
+                        {% else %}Pendiente...{% endif %}
+                    </strong>
+                </div>
+            </a>
+
+            <!--FUENTE-->
+            <a href="?paso=fuente" style="text-decoration: none; color: inherit; display: flex; gap: 10px; align-items: center; font-size: 1rem; padding: 8px; border-radius: 6px; transition: background 0.2s;">
+                <div style="width: 40px; text-align: center; font-size: 20px; {% if fuente_elegida %}color: var(--color-acento);{% else %}color: #7f8c8d;{% endif %}">
+                    <i class="fa-solid fa-plug"></i>
+                </div>
+                <div style="flex: 1;">
+                    <small class="text-muted" style="display: block; font-size: 1rem; text-transform: uppercase;">Fuente de Alimentación (Cambiar)</small>
+                    <strong>
+                        {% if fuente_elegida %}{{ fuente_elegida.nombre }}
+                        {% elif armado.fuente == 'omitido' %}<span style="color: var(--color-error); font-style: italic;">Omitido</span>
+                        {% else %}Pendiente...{% endif %}
+                    </strong>
+                </div>
+            </a>
         </div>
 
         <div class="title-line" style="margin: 25px 0 15px 0;"></div>
