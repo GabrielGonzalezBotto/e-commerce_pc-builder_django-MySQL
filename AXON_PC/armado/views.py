@@ -63,7 +63,7 @@ def asistente_armado(request):
             if mother_elegida and mother_elegida.tipo_memoria:
                 productos_filtrados = Producto.objects.filter(
                     categoria__nombre__iexact='memoria ram',
-                    socket__iexact=mother_elegida.tipo_memoria,
+                    tipo_memoria__iexact=mother_elegida.tipo_memoria,
                     stock__gt=0
                 )
             else:
@@ -107,7 +107,7 @@ def asistente_armado(request):
     page_obj = paginator.get_page(page_number)
 
     titulos = {
-        'proceasdor': 'Procesador',
+        'procesador': 'Procesador',
         'placa_madre': 'Placa Madre',
         'memoria_ram': 'Memoria RAM',
         'tarjeta_grafica': 'Tarjeta Gráfica',
@@ -186,6 +186,9 @@ def reiniciar_armado(request):
         'placa_madre': None,
         'memoria_ram': None,
         'tarjeta_grafica': None,
+        'almacenamiento': None,
+        'gabinete': None,
+        'fuente': None,
     }
     request.session.modified = True
     return redirect('asistente_armado')
