@@ -263,6 +263,51 @@
                     </strong>
                 </div>
             </a>
+
+            <!--COOLER-->
+            <a href="?paso=cooler" style="text-decoration: none; color: inherit; display: flex; gap: 10px; align-items: center; font-size: 1rem; padding: 8px; border-radius: 6px; transition: background 0.2s;">
+                <div style="width: 40px; text-align: center; font-size: 20px; {% if cooler_elegido %}color: var(--color-acento);{% else %}color: #7f8c8d;{% endif %}">
+                    <i class="fa-solid fa-fan"></i>
+                </div>
+                <div style="flex: 1;">
+                    <small class="text-muted" style="display: block; font-size: 1rem; text-transform: uppercase;">Cooler (Cambiar)</small>
+                    <strong>
+                        {% if cooler_elegido %}{{ cooler_elegido.nombre }}
+                        {% elif armado.cooler == 'omitido' %}<span style="color: var(--color-error); font-style: italic;">Omitido</span>
+                        {% else %}Pendiente...{% endif %}
+                    </strong>
+                </div>
+            </a>
+
+            <!--PANTALLA-->
+            <a href="?paso=pantalla" style="text-decoration: none; color: inherit; display: flex; gap: 10px; align-items: center; font-size: 1rem; padding: 8px; border-radius: 6px; transition: background 0.2s;">
+                <div style="width: 40px; text-align: center; font-size: 20px; {% if pantalla_elegida %}color: var(--color-acento);{% else %}color: #7f8c8d;{% endif %}">
+                    <i class="fa-solid fa-desktop"></i>
+                </div>
+                <div style="flex: 1;">
+                    <small class="text-muted" style="display: block; font-size: 1rem; text-transform: uppercase;">Pantalla (Cambiar)</small>
+                    <strong>
+                        {% if pantalla_elegida %}{{ pantalla_elegida.nombre }}
+                        {% elif armado.pantalla == 'omitido' %}<span style="color: var(--color-error); font-style: italic;">Omitido</span>
+                        {% else %}Pendiente...{% endif %}
+                    </strong>
+                </div>
+            </a>
+
+            <!--ACCESORIO-->
+            <a href="?paso=accesorio" style="text-decoration: none; color: inherit; display: flex; gap: 10px; align-items: center; font-size: 1rem; padding: 8px; border-radius: 6px; transition: background 0.2s;">
+                <div style="width: 40px; text-align: center; font-size: 20px; {% if accesorio_elegido %}color: var(--color-acento);{% else %}color: #7f8c8d;{% endif %}">
+                    <i class="fa-solid fa-keyboard"></i>
+                </div>
+                <div style="flex: 1;">
+                    <small class="text-muted" style="display: block; font-size: 1rem; text-transform: uppercase;">Accesorio (Cambiar)</small>
+                    <strong>
+                        {% if accesorio_elegido %}{{ accesorio_elegido.nombre }}
+                        {% elif armado.accesorio == 'omitido' %}<span style="color: var(--color-error); font-style: italic;">Omitido</span>
+                        {% else %}Pendiente...{% endif %}
+                    </strong>
+                </div>
+            </a>
         </div>
 
         <div class="title-line" style="margin: 25px 0 15px 0;"></div>

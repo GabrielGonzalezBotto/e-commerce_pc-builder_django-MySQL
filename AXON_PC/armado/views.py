@@ -4,7 +4,7 @@ from tienda.models import Producto
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-ORDEN_PASOS = ['procesador', 'placa_madre', 'memoria_ram', 'tarjeta_grafica', 'almacenamiento', 'gabinete', 'fuente']
+ORDEN_PASOS = ['procesador', 'placa_madre', 'memoria_ram', 'tarjeta_grafica', 'almacenamiento', 'gabinete', 'fuente', 'cooler', 'pantalla', 'accesorio']
 
 def asistente_armado(request):
     if 'carrito_armado' not in request.session:
@@ -16,6 +16,9 @@ def asistente_armado(request):
             'almacenamiento': None,
             'gabinete': None,
             'fuente': None,
+            'cooler': None,
+            'pantalla': None,
+            'accesorio': None,
         }
     armado = request.session['carrito_armado']
 
@@ -100,6 +103,12 @@ def asistente_armado(request):
         if cpu and cpu.watts: watts_minimos += cpu.watts
 
         productos_filtrados = Producto.objects.filter(categoria__nombre__iexact='fuente', watts__gte=watts_minimos, stock__gt=0)
+
+    elif paso_actual == 'cooler':
+        productos_filtrados = Producto.objects.filter(categoria__nombre__iexact='cooler', stock__gt=0)
+
+    elif paso_actual == 'accesorio':
+        productos_filtrados = Producto.objects.filter(categoria__nombre__iexact='accesorio', stock__gt=0)
         
     #Paginacion reutilizada de tienda,html
     paginator = Paginator(productos_filtrados, 2)
@@ -114,6 +123,9 @@ def asistente_armado(request):
         'almacenamiento': 'Almacenamiento (SSD/HDD)',
         'gabinete': 'Gabinete/Chasis',
         'fuente': 'Fuente de Alimentacion',
+        'cooler': 'Cooler',
+        'pantalla': 'Pantalla',
+        'accesorio': 'Accesorio',        
         'finalizado': '¡Armado Completado!',
     }
 
@@ -137,6 +149,9 @@ def asistente_armado(request):
         'disco_elegido': Producto.objects.filter(id=armado.get('almacenamiento')).first() if armado.get('almacenamiento') not in [None, 'omitido'] else None,
         'gabinete_elegido': Producto.objects.filter(id=armado.get('gabinete')).first() if armado.get('gabinete') not in [None, 'omitido'] else None,
         'fuente_elegida': Producto.objects.filter(id=armado.get('fuente')).first() if armado.get('fuente') not in [None, 'omitido'] else None,
+        'cooler_elegido': Producto.objects.filter(id=armado.get('cooler')).first() if armado.get('cooler') not in [None, 'omitido'] else None,
+        'pantalla_elegida': Producto.objects.filter(id=armado.get('pantalla')).first() if armado.get('pantalla') not in [None, 'omitido'] else None,
+        'accesorio_elegido': Producto.objects.filter(id=armado.get('accesorio')).first() if armado.get('accesorio') not in [None, 'omitido'] else None,
     }
 
     return render(request, 'armado/asistente.html', context)
@@ -166,6 +181,12 @@ def seleccionar_componente(request, producto_id):
         armado['gabinete'] = producto.id
     elif 'fuente' in categoria:
         armado['fuente'] = producto.id
+    elif 'cooler' in categoria:
+        armado['cooler'] = producto.id
+    elif 'pantalla' in categoria:
+        armado['pantalla'] = producto.id
+    elif 'accesorio' in categoria:
+        armado['accesorio'] = producto.id
 
     request.session['carrito_armado'] = armado
     request.session.modified = True
@@ -189,6 +210,9 @@ def reiniciar_armado(request):
         'almacenamiento': None,
         'gabinete': None,
         'fuente': None,
+        'cooler': None,
+        'pantalla': None,
+        'accesorio': None,
     }
     request.session.modified = True
     return redirect('asistente_armado')
