@@ -23,6 +23,19 @@ class Producto(models.Model):
     watts = models.IntegerField(blank=True, null=True)
     factor_forma = models.CharField(max_length=50, blank=True, null=True)
 
+    #PASO 0 con filtros de compra
+    objetivo = models.CharField(
+        max_length=50,
+        choices=[
+        ('gaming', 'Gaming / Streaming'),
+        ('oficina', 'Oficina / Estudio'),
+        ('diseno', 'Diseño / Edición de Videos'),
+        ],
+        blank=True,
+        null=True,
+        help_text="Perfil recomendado para el asistente de armado"
+    )
+
     @property
     def promedio_estrellas(self):
         reviews = self.reviews.all()
