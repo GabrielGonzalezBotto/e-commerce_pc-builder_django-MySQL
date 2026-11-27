@@ -20,7 +20,27 @@ def asistente_armado(request):
             'pantalla': None,
             'accesorio': None,
         }
+
+    if 'asistente_perfil' not in request.session:
+        request.session['asistente_perfil'] = {
+            'presupuesto': None,
+            'objetivo': None
+        }
+
     armado = request.session['carrito_armado']
+    perfil = request.session['asistente_perfil']
+
+    #Formulario del paso 0
+    if request.method == 'POST' and 'configurar_perfil' in request.POST:
+        perfil['presupuesto'] = request.POST.get('presupuesto') or None
+        perfil['objetivo'] = request.POST.get('objetivo') or None
+        request.session['asistente_perfil'] = perfil
+        request.session.modified = True
+        return redirect('asistente_armado')
+
+    #Si no configuro el perfil, frenamos en el paso 0
+    if not perfil['objetivo']:
+        return render(request, 'armado/index_asistente.html')
 
     #poder retroceder un paso en la lista
     paso_forzado = request.GET.get('paso')
@@ -109,6 +129,12 @@ def asistente_armado(request):
 
     elif paso_actual == 'accesorio':
         productos_filtrados = Producto.objects.filter(categoria__nombre__iexact='accesorio', stock__gt=0)
+
+    elif perfil['objetivo']:
+        productos_filtrados = productos_filtrados.filter(objetivo=perfil['objetivo'])
+
+    elif perfil['presupuesto']:
+        productos_filtrados = productos_filtrados.filter(precio__lte=float(perfil['presupuesto']))
         
     #Paginacion reutilizada de tienda,html
     paginator = Paginator(productos_filtrados, 2)

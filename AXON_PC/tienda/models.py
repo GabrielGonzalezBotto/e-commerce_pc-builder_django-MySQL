@@ -30,6 +30,7 @@ class Producto(models.Model):
         ('gaming', 'Gaming / Streaming'),
         ('oficina', 'Oficina / Estudio'),
         ('diseno', 'Diseño / Edición de Videos'),
+        ('mixto', 'Mixto (Trabajo y Gaming)')
         ],
         blank=True,
         null=True,
